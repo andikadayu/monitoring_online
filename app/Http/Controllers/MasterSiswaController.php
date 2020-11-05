@@ -1,0 +1,150 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use DB;
+use Storage;
+
+class MasterSiswaController extends Controller
+{
+    public function index()
+    {
+    	$kelas=DB::table('ms_kelas')->get();
+    	$tempat=DB::table('ms_tempat_prakerin')->get();
+    	$siswa=DB::table('ms_siswa')
+    		->select('nis_siswa','nama_siswa','telp_ortu','detail_kelas','detail_tempat')
+    		->join('ms_kelas','ms_kelas.id_kelas','=','ms_siswa.id_kelas')
+    		->join('ms_tempat_prakerin','ms_tempat_prakerin.id_tempat_prakerin','=','ms_siswa.id_tempat_prakerin')
+    		->get();
+        return view('pages.siswa',[
+        	'kelas' => $kelas,
+        	'tempat'=> $tempat,
+        	'siswa' => $siswa
+        ]);
+	}
+	
+	public function add_siswa(Request $request)
+	{
+		if ($request->hasFile('img_siswa')) {
+            $extension=$request->file('img_siswa')->extension();
+            $imgname=rand(1,5000).'_'.date('dmyHis').'.'.$extension;
+            Storage::putFileAs('public/siswa', $request->file('img_siswa'),$imgname);
+        } else {
+            $imgname="default.png";
+		}
+		$insert=DB::table('ms_siswa')
+            ->insert([
+				'nis_siswa' => $request->input('nis_siswa'),
+                'nama_siswa' => $request->input('nama_siswa'),
+                'tgl_lahir_siswa' => $request->input('tgl_lahir_siswa'),
+                'agama_siswa' => $request->input('agama_siswa'),
+                'jenis_kelamin_siswa' => $request->input('jenis_kelamin_siswa'),
+                'alamat_siswa' => $request->input('alamat_siswa'),
+                'nama_ortu' => $request->input('nama_ortu'),
+				'telp_ortu' => $request->input('telp_ortu'),
+				'id_kelas' => $request->input('id_kelas'),
+				'id_tempat_prakerin' => $request->input('id_tempat_prakerin'),
+                'img_siswa' => $imgname
+			]);
+		if ($insert) {
+            return 'success';
+        } else {
+            return 'error';
+        }
+	}
+
+	public function get_siswa(Request $request)
+	{
+		$data=DB::table('ms_siswa')->where('nis_siswa',$request->get('id'))->get();
+		return $data;
+	}
+
+	public function update_siswa(Request $request)
+	{
+		$imgbefore=$this->cek_image($request->input('id_siswa'))->img_siswa; 
+		 if ($request->hasFile('img_siswa')) {
+            if ($imgbefore != 'default.png') {
+                unlink(storage_path('app/public/siswa/'.$imgbefore));
+            }
+
+            $extension=$request->file('img_siswa')->extension();
+            $imgname=rand(1,5000).'_'.date('dmyHis').'.'.$extension;
+            Storage::putFileAs('public/siswa', $request->file('img_siswa'),$imgname);
+
+            $update=DB::table('ms_siswa')
+                ->where('nis_siswa',$request->input('nis_siswa'))
+                ->update([
+					'nama_siswa' => $request->input('nama_siswa'),
+					'tgl_lahir_siswa' => $request->input('tgl_lahir_siswa'),
+					'agama_siswa' => $request->input('agama_siswa'),
+					'jenis_kelamin_siswa' => $request->input('jenis_kelamin_siswa'),
+					'alamat_siswa' => $request->input('alamat_siswa'),
+					'nama_ortu' => $request->input('nama_ortu'),
+					'telp_ortu' => $request->input('telp_ortu'),
+					'id_kelas' => $request->input('id_kelas'),
+					'id_tempat_prakerin' => $request->input('id_tempat_prakerin'),
+					'img_siswa' => $imgname
+                ]);
+
+        }else{
+            $update=DB::table('ms_siswa')
+                ->where('nis_siswa',$request->input('nis_siswa'))
+                ->update([
+                    'nama_siswa' => $request->input('nama_siswa'),
+					'tgl_lahir_siswa' => $request->input('tgl_lahir_siswa'),
+					'agama_siswa' => $request->input('agama_siswa'),
+					'jenis_kelamin_siswa' => $request->input('jenis_kelamin_siswa'),
+					'alamat_siswa' => $request->input('alamat_siswa'),
+					'nama_ortu' => $request->input('nama_ortu'),
+					'telp_ortu' => $request->input('telp_ortu'),
+					'id_kelas' => $request->input('id_kelas'),
+					'id_tempat_prakerin' => $request->input('id_tempat_prakerin')
+                ]);
+           
+		}
+		
+		if ($update) {
+            return 'success';
+        } else {
+            return 'error';
+        }
+		
+	}
+
+	public function delete_siswa(Request $request)
+    {
+        $imgbefore=$this->cek_image($request->get('id'))->img_siswa;
+        if ($imgbefore != 'default.png') {
+            unlink(storage_path('app/public/siswa/'.$imgbefore));
+        }
+
+        $delete=DB::table('ms_siswa')
+            ->where('nis_siswa',$request->get('id'))
+			->delete();
+			
+		$cek = $this->cek_user($request->get('id'));
+
+		if($cek != null || $cek != ""){
+			$deleted=DB::table('ms_users')
+				->where('id_siswa_detail',$request->get('id'))
+				->delete();
+		}
+        
+        if ($delete < 0) {
+            return 'error';
+        } else {
+            return 'success';
+        }
+	}
+	
+	public function cek_user($id)
+	{
+		return DB::table('ms_users')->where('id_siswa_detail',$id)->first();
+	}
+
+	public function cek_image($id)
+    {
+        return DB::table('ms_siswa')->where('nis_siswa',$id)->first();
+    }
+}
