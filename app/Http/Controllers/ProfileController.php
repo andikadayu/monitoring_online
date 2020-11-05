@@ -53,7 +53,7 @@ class ProfileController extends Controller
 
             } else {
                 $imgbefores = $this->cek_image($request->input('id'))->img_pembimbing;
-                if ($imgbefore != 'default.png') {unlink(storage_path('app/public/pembimbing/'.$imgbefores));}
+                if ($imgbefores != 'default.png') {unlink(storage_path('app/public/pembimbing/'.$imgbefores));}
 
                 $imgname=rand(1,5000).'_'.date('dmyHis').'.'.$extension;
                 Storage::putFileAs('public/pembimbing', $request->file('image'),$imgname);

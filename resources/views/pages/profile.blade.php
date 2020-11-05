@@ -46,10 +46,10 @@
                 <div class="image text-center">
                     @if (session('role')!= 'Admin')
                     @if (session('role') == 'Pembimbing')
-                    <img src="{{url('storage/app/public/pembimbing/')}}/{{session('photo')}}"
+                    <img src="{{url('storage/pembimbing/')}}/{{session('photo')}}"
                         class="img-circle elevation-2" alt="User Image" style="height: 128px;width: 128px;">
                     @else
-                    <img src="{{url('storage/app/public/siswa/')}}/{{session('photo')}}" class="img-circle elevation-2"
+                    <img src="{{url('storage/siswa/')}}/{{session('photo')}}" class="img-circle elevation-2"
                         alt="User Image" style="height: 128px;width: 128px;">
                     @endif
                     @else
@@ -132,7 +132,7 @@
                     'update profile',
                     'success'
                 );
-                location.reload();
+                location.href = 'logout';
             }else{
                 Swal.fire(
                     'error',
