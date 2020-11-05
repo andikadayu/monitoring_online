@@ -12,10 +12,10 @@
       <div class="image">
         @if (session('role')!= 'Admin')
         @if (session('role') == 'Pembimbing')
-        <img src="{{url('storage/app/public/pembimbing/')}}/{{session('photo')}}" class="img-circle elevation-2"
+        <img src="{{url('storage/pembimbing/')}}/{{session('photo')}}" class="img-circle elevation-2"
           alt="User Image">
         @else
-        <img src="{{url('storage/app/public/siswa/')}}/{{session('photo')}}" class="img-circle elevation-2"
+        <img src="{{asset('storage/siswa/')}}/{{session('photo')}}" class="img-circle elevation-2"
           alt="User Image">
         @endif
         @else

@@ -46,7 +46,7 @@ class LaporanPrakerinController extends Controller
     {
         $data=LaporanPrakerin::where('id_laporan',$request->get('id'))->first();
 
-        return json_encode('storage/app/public/laporan/'.$data->file_laporan);
+        return json_encode('storage/laporan/'.$data->file_laporan);
 
     }
 
