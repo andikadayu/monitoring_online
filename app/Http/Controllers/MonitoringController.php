@@ -47,7 +47,14 @@ class MonitoringController extends Controller
         $mon = new Monitoring();
         $mon->id_user = Session::get('id_user');
         $mon->tgl_monitoring = $request->input('tgl_monitoring');
-        $mon->division =  $request->input('division');
+        $division = "";
+
+        foreach ($request->input('division') as $cat) {
+
+            $division .= $cat . ', ';
+        }
+        $mon->division =  $division;
+
         $mon->evaluasi_hasil = $request->input('evaluasi_hasil');
         $mon->penyelesaian = $request->input('penyelesaian');
         $mon->id_tempat_prakerin = $request->input('id_tempat_prakerin');

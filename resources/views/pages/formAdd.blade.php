@@ -54,7 +54,7 @@
                     <div class="row">
                         <div class="col">
                             <label for="">Division</label>
-                            <select name="division" id="division" multiple class="form-control select2"
+                            <select name="division[]" id="division" multiple class="form-control select2"
                                 style="width: 100%" required>
                                 <option value="TIK">TIK</option>
                                 <option value="Otomotif">Otomotif</option>
