@@ -1,0 +1,1 @@
+<H3>Anda Telah Berhasil Di Monitoring Pada {{$tanggal}}</H3>

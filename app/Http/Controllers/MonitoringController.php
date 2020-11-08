@@ -13,6 +13,8 @@ use PDF;
 use Crypt;
 use Excel;
 use App\Exports\MonitoringExport;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MonitoringEmail;
 
 class MonitoringController extends Controller
 {
@@ -68,6 +70,19 @@ class MonitoringController extends Controller
             );
         }
         DB::table('tb_monitoring_detail')->insert($data);
+
+        // Mail Notification
+        $em = DB::table('ms_siswa')
+            ->join('ms_users', 'ms_users.id_siswa_detail', '=', 'ms_siswa.nis_siswa')
+            ->where('id_tempat_prakerin', $request->input('id_tempat_prakerin'))->get();
+
+        foreach ($em as $key => $e) {
+            Mail::to($e->email)
+                ->cc('dikahalpar@gmail.com')
+                ->send(new MonitoringEmail());
+        }
+
+
 
         if ($FirstInsert) {
             return 'success';
