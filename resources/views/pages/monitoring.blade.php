@@ -1,6 +1,5 @@
 @extends('master')
 @section('monitoring-active','active')
-@section('datas','menu-open')
 @section('title','Monitoring')
 @section('header','Monitoring')
 @section('content')
@@ -12,7 +11,10 @@
                 <h3 class="card-title">Monitoring</h3>
             </div>
             <div class="card-body">
-                <a href="{{route('form_monitoring')}}" class="btn btn-info">Tambah Monitoring</a>
+                @if (session('role') == 'Pembimbing')
+                <a href="{{route('form_monitoring')}}" class="btn btn-info"><i class="fas fa-plus"> Tambah Monitoring</i></a>
+                @endif
+                <button class="btn btn-success" onclick="$('#viewReport').modal('show');"><i class="fas fa-file-excel"> Cetak Excel</i></button>
                 {{-- show data  --}}
                 <div class="table-responsive">
                     <table class="table table-hover table-striped" id="datatables">
@@ -51,9 +53,41 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="viewReport">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Report Jurnal</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+                <div class="modal-body">
+                    <label for="">Jangka Waktu</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">
+                            <i class="far fa-calendar-alt"></i>
+                          </span>
+                        </div>
+                        <input type="text" name="tgl"  class="form-control float-right" id="reservation">
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" onclick="report_proses()" class="btn btn-primary">Submit</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+        </div>
+    </div>
+</div>
 @endsection
 @section('js')
 <script>
+    $(function () {
+        $('#reservation').daterangepicker();
+    })
+
     function show_loading(){
         Swal.fire({
             html: 'Loading . . .',
@@ -68,6 +102,14 @@
         show_loading();
         window.open('cetak-pdf?id='+id, '_blank');
         Swal.close();
+    }
+
+    function report_proses() {
+        var tgl = $('#reservation').val();
+        show_loading();
+        window.open("monitoring-excel?tgl="+tgl,'_blank');
+        Swal.close();
+        location.reload();
     }
 </script>
 @endsection

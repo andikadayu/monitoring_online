@@ -1,6 +1,5 @@
 @extends('master')
 @section('laporan-active','active')
-@section('datas','menu-open')
 @section('title','Laporan')
 @section('header','Laporan')
 @section('content')
@@ -112,7 +111,6 @@
         </div>
     </div>
 </div>
-
 
 @endsection
 @section('js')

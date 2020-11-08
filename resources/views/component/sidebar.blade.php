@@ -106,8 +106,7 @@
           </ul>
         </li>
         @endif
-        @if (session('role') == 'Pembimbing' || session('role') == 'Siswa')
-        @if (session('role') == 'Pembimbing')
+        @if (session('role') == 'Pembimbing' || session('role') == 'Admin')
         <li class="nav-item">
           <a href="{{ route('monitoring')}}" class="nav-link @yield('monitoring-active')">
             <i class="nav-icon fas fa-tv"></i>
@@ -133,7 +132,6 @@
             </p>
           </a>
         </li>
-        @endif
         <li class="nav-item">
           <a href="{{ route('profile') }}" class="nav-link @yield('profile-active')">
             <i class="nav-icon fas fa-key"></i>

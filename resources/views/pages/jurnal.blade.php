@@ -1,6 +1,5 @@
 @extends('master')
 @section('jurnal-active','active')
-@section('datas','menu-open')
 @section('title','Jurnal Harian')
 @section('header','Jurnal Harian')
 @section('content')
@@ -284,7 +283,7 @@
                 </button>
             </div>
                 <div class="modal-body">
-                    @if (session('role') == 'Pembimbing')
+                    @if (session('role') == 'Pembimbing' || session('role') == 'Admin' )
                         <label for="">Tempat Prakerin</label>
                         <select name="id_tempat" id="s_tempat" class="form-control select2" onchange="c_tempat()">
                             <option value="" selected disabled>--Pilih Tempat--</option>
@@ -524,6 +523,7 @@
         }).done(function (data) {
             Swal.close();
             window.open("report-jurnal?nis_siswa="+nis_siswa+"&tgl_jurnal="+tgl_jurnal,"_blank");
+            location.reload();
         })
 
     }

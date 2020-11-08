@@ -14,7 +14,7 @@ class JurnalHarian extends Model
 
     public function getData()
     {
-        if (Session::get('role') == 'Pembimbing') {
+        if (Session::get('role') == 'Pembimbing' || Session::get('role') == 'Admin') {
             $data = DB::table('tb_jurnal')
                 ->join('ms_siswa', 'tb_jurnal.nis_siswa', '=', 'ms_siswa.nis_siswa')
                 ->join('ms_tempat_prakerin', 'ms_siswa.id_tempat_prakerin', '=', 'ms_tempat_prakerin.id_tempat_prakerin')

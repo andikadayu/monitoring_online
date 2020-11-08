@@ -106,4 +106,5 @@ Route::group(['middleware' => ['CekLogin']], function () {
     Route::get('monitoring/form-add', 'MonitoringController@form_monitoring')->name('form_monitoring');
     Route::post('monitoring/adding-monitoring', 'MonitoringController@add_monitoring')->name('add_monitoring');
     Route::get('cetak-pdf', 'MonitoringController@cetak_pdf')->name('cetak_pdf');
+    Route::get('monitoring-excel', 'MonitoringController@cetak_excel')->name('monitoring_excel');
 });

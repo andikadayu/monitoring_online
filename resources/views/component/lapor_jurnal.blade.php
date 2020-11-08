@@ -93,14 +93,18 @@
         text-align: inherit;
     }
 
+    h4{
+        margin:7px;
+    }
+
     </style>
 </head>
 <body>
     <h4 align="center">Laporan Jurnal Harian Siswa</h4>
     @foreach ($siswa as $sis)
-    <h4 align="center">{{$sis->nama_siswa}}</h4>
-    <h4 align="center">{{$sis->detail_tempat}}</h4>
-    <h4 align="right">{{$first}} s/d {{$last}}</h4>
+    <h4 align="center">{{$sis->detail_tempat}}</h4><br>
+    <p align="left" style="font-weight: bold">Nama/NIS  : {{$sis->nama_siswa}} / {{$sis->nis_siswa}}</p>
+    <p align="left" style="font-weight: bold">Tanggal   : {{Carbon\Carbon::parse($first)->isoFormat('DD MMMM YYYY')}} s/d {{Carbon\Carbon::parse($last)->isoFormat(' DD MMMM YYYY')}}</p></b><hr>
     @endforeach
 
     @foreach ($jurnal as $jur)
