@@ -16,14 +16,14 @@ class JurnalHarian extends Model
     {
         if (Session::get('role') == 'Pembimbing') {
             $data = DB::table('tb_jurnal')
-                ->join('ms_siswa','tb_jurnal.nis_siswa','=','ms_siswa.nis_siswa')
-                ->join('ms_tempat_prakerin','ms_siswa.id_tempat_prakerin','=','ms_tempat_prakerin.id_tempat_prakerin')
+                ->join('ms_siswa', 'tb_jurnal.nis_siswa', '=', 'ms_siswa.nis_siswa')
+                ->join('ms_tempat_prakerin', 'ms_siswa.id_tempat_prakerin', '=', 'ms_tempat_prakerin.id_tempat_prakerin')
                 ->get();
         } else {
-             $data = DB::table('tb_jurnal')
-                ->join('ms_siswa','tb_jurnal.nis_siswa','=','ms_siswa.nis_siswa')
-                ->join('ms_tempat_prakerin','ms_siswa.id_tempat_prakerin','=','ms_tempat_prakerin.id_tempat_prakerin')
-                ->where('tb_jurnal.nis_siswa',Session::get('nis'))
+            $data = DB::table('tb_jurnal')
+                ->join('ms_siswa', 'tb_jurnal.nis_siswa', '=', 'ms_siswa.nis_siswa')
+                ->join('ms_tempat_prakerin', 'ms_siswa.id_tempat_prakerin', '=', 'ms_tempat_prakerin.id_tempat_prakerin')
+                ->where('tb_jurnal.nis_siswa', Session::get('nis'))
                 ->get();
         }
         return $data;
@@ -31,6 +31,21 @@ class JurnalHarian extends Model
 
     public function lastJurnal()
     {
-        return DB::table('tb_jurnal')->where('nis_siswa',Session::get('nis'))->latest('tgl_jurnal')->first();
+        return DB::table('tb_jurnal')->where('nis_siswa', Session::get('nis'))->latest('tgl_jurnal')->first();
+    }
+
+    public function get_siswa($id)
+    {
+        return DB::table('ms_siswa')->where('id_tempat_prakerin', $id)->get();
+    }
+
+    public function JurnalDate($nis, $first, $last)
+    {
+        return DB::table('tb_jurnal')->where('nis_siswa', $nis)->whereBetween('tgl_jurnal', [$first, $last])->get();
+    }
+
+    public function JurnalSiswa($nis)
+    {
+        return DB::table('ms_siswa')->join('ms_tempat_prakerin', 'ms_tempat_prakerin.id_tempat_prakerin', '=', 'ms_siswa.id_tempat_prakerin')->where('nis_siswa', $nis)->get();
     }
 }

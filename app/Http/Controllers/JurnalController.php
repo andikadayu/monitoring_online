@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\JurnalHarian;
 use Session;
+use App\TempatPrakerin;
+use PDF;
 
 class JurnalController extends Controller
 {
@@ -13,8 +15,8 @@ class JurnalController extends Controller
         $jurnal = new JurnalHarian();
         $jurnals = $jurnal->getData();
         $last = $jurnal->lastJurnal();
-        
-        return view('pages.jurnal',['jurnal'=>$jurnals,'last'=>$last]);
+        $tempat = TempatPrakerin::get();
+        return view('pages.jurnal', ['jurnal' => $jurnals, 'last' => $last, 'tempat' => $tempat]);
     }
 
     public function add_jurnal(Request $request)
@@ -22,7 +24,7 @@ class JurnalController extends Controller
         $jurnal = new JurnalHarian();
         $jurnal->nis_siswa = $request->input('nis_siswa');
         $jurnal->jam_masuk = $request->input('jam_masuk');
-        $jurnal->jam_keluar= $request->input('jam_keluar');
+        $jurnal->jam_keluar = $request->input('jam_keluar');
         $jurnal->prosedur_kerja = $request->input('prosedur_kerja');
         $jurnal->kegiatan_kerja = $request->input('kegiatan_kerja');
         $jurnal->spesifikasi_bahan = $request->input('spesifikasi_bahan');
@@ -33,30 +35,31 @@ class JurnalController extends Controller
             return 'success';
         } else {
             return 'error';
-        }   
+        }
     }
 
     public function view_jurnal(Request $request)
     {
-        return JurnalHarian::where('id_jurnal',$request->get('id'))->get();
+        return JurnalHarian::where('id_jurnal', $request->get('id'))->get();
     }
 
     public function edit_jurnal(Request $request)
     {
         $check = JurnalHarian::find($request->input('id_jurnal'));
         $check->jam_masuk = $request->input('jam_masuk');
-        $check->jam_keluar= $request->input('jam_keluar');
+        $check->jam_keluar = $request->input('jam_keluar');
         $check->prosedur_kerja = $request->input('prosedur_kerja');
         $check->kegiatan_kerja = $request->input('kegiatan_kerja');
         $check->spesifikasi_bahan = $request->input('spesifikasi_bahan');
         $check->tgl_jurnal = $request->input('tgl_jurnal');
+        $check->is_valid = 0;
 
         $update = $check->save();
         if ($update) {
             return 'success';
         } else {
             return 'error';
-        }   
+        }
     }
 
     public function accept_jurnal(Request $request)
@@ -64,6 +67,7 @@ class JurnalController extends Controller
         $acc = JurnalHarian::find($request->get('id'));
         $acc->is_valid = 1;
         $acc->id_pembimbing = Session::get('id_user');
+        $acc->catatan = null;
         $cca = $acc->save();
 
         if ($cca) {
@@ -71,6 +75,55 @@ class JurnalController extends Controller
         } else {
             return 'error';
         }
-        
+    }
+
+    public function reject_jurnal(Request $request)
+    {
+        $rcc = JurnalHarian::find($request->input('id_jurnal'));
+        $catatan = "";
+
+        foreach ($request->input('catatan') as $cat) {
+
+            $catatan .= $cat . ', ';
+        }
+
+        $rcc->is_valid = 2;
+        $rcc->id_pembimbing = Session::get('id_user');
+        $rcc->catatan = $catatan;
+        $ccr = $rcc->save();
+        if ($ccr) {
+            return 'success';
+        } else {
+            return 'error';
+        }
+    }
+
+    public function c_tempat(Request $request)
+    {
+        $siswa = new JurnalHarian();
+        $data = $siswa->get_siswa($request->get('id'));
+        foreach ($data as $key => $v) {
+            echo "<option value='" . $v->nis_siswa . "'>" . "(" . $v->nis_siswa . ") " . $v->nama_siswa . "</option>";
+        }
+    }
+
+    public function report_jurnal(Request $request)
+    {
+        $tanggal = $request->get('tgl_jurnal');
+        $tgl = explode(" - ", $tanggal);
+        $time1 = strtotime($tgl[0]);
+        $newformat1 = date('Y-m-d', $time1);
+        $time2 = strtotime($tgl[1]);
+        $newformat2 = date('Y-m-d', $time2);
+        $nis = $request->get('nis_siswa');
+        $jurnal = new JurnalHarian();
+
+        $pdf = PDF::loadview('component.lapor_jurnal', [
+            'jurnal' => $jurnal->JurnalDate($nis, $newformat1, $newformat2),
+            'siswa' => $jurnal->JurnalSiswa($nis),
+            'first' => $newformat1,
+            'last' => $newformat2
+        ]);
+        return $pdf->stream();
     }
 }

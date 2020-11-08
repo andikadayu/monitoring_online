@@ -11,6 +11,43 @@
         page-break-after: always;
     }
 
+    @page {
+        margin: 0cm 0cm;
+    }
+
+    /** Define now the real margins of every page in the PDF **/
+    body {
+        margin-top: 3.2cm;
+        margin-left: 2cm;
+        margin-right: 2cm;
+        margin-bottom: 2cm;
+    }
+
+    /** Define the header rules **/
+    header {
+        position: fixed;
+        top: 0cm;
+        left: 0cm;
+        right: 0cm;
+        height: 3cm;
+
+        /** Extra personal styles **/
+        background-image: url("<?php echo public_path().'/assets/img/header.png'; ?>");
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+
+    footer {
+        position: fixed; 
+        bottom: 0cm; 
+        left: 0cm; 
+        right: 0cm;
+        height: 0.5cm;
+
+        background-image: url("<?php echo public_path().'/assets/img/image.png'; ?>");
+    }
+
     table {
         border-collapse: collapse;
     }
@@ -68,12 +105,12 @@
     }
 
     .custom-checkbox .custom-control-label::before {
-        border-radius: .25rem
+        border-radius: .25rem;
     }
 
     label {
         display: inline-block;
-        margin-bottom: .5rem
+        margin-bottom: .5rem;
     }
 
     body {
@@ -82,11 +119,20 @@
     }
 
     th {
-        text-align: inherit
+        text-align: inherit;
     }
+
+    h4 {
+        margin: 8px;
+    }
+
 </style>
 
 <body>
+    <header>
+
+    </header>
+    <hr>
     @php \Carbon\Carbon::setLocale('id'); @endphp
     <h4 align="center">RECORDING KUNJUNGAN SISWA PRAKERIN</h4>
     @foreach($monitoring as $mnt)
@@ -189,6 +235,10 @@
     </table>
 
     @endforeach
+
+    <footer>
+
+    </footer>
 </body>
 
 </html>

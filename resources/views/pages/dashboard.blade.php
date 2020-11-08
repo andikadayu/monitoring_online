@@ -8,7 +8,7 @@
         <!-- small box -->
         <div class="small-box bg-info">
             <div class="inner">
-                <h3>150</h3>
+                <h3 id="jPembimbing"></h3>
 
                 <p>Pembimbing</p>
             </div>
@@ -22,7 +22,7 @@
         <!-- small box -->
         <div class="small-box bg-success">
             <div class="inner">
-                <h3>53<sup style="font-size: 20px">%</sup></h3>
+                <h3 id="jSiswa"></h3>
 
                 <p>Siswa</p>
             </div>
@@ -36,7 +36,7 @@
         <!-- small box -->
         <div class="small-box bg-warning">
             <div class="inner">
-                <h3>44</h3>
+                <h3 id="jTempat"></h3>
 
                 <p>Tempat Prakerin</p>
             </div>
@@ -50,7 +50,7 @@
         <!-- small box -->
         <div class="small-box bg-danger">
             <div class="inner">
-                <h3>65</h3>
+                <h3 id="jUser"></h3>
 
                 <p>User</p>
             </div>
@@ -63,5 +63,17 @@
 </div>
 @endsection
 @section('js')
-
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            url : 'get-data-dashboard',
+            method : 'GET',
+        }).done(function (data) {
+            $('#jPembimbing').text(data.pembimbing);
+            $('#jSiswa').text(data.siswa);
+            $('#jTempat').text(data.tempat);
+            $('#jUser').text(data.user);
+        })
+    })
+</script>
 @endsection
