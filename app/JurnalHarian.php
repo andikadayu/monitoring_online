@@ -41,7 +41,7 @@ class JurnalHarian extends Model
 
     public function JurnalDate($nis, $first, $last)
     {
-        return DB::table('tb_jurnal')->where('nis_siswa', $nis)->whereBetween('tgl_jurnal', [$first, $last])->get();
+        return DB::table('tb_jurnal')->where('nis_siswa', $nis)->where('is_valid', 1)->whereBetween('tgl_jurnal', [$first, $last])->get();
     }
 
     public function JurnalSiswa($nis)
