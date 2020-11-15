@@ -265,10 +265,10 @@
 					yAxes: [{
 						ticks: {
 							beginAtZero: true,
-                            stepSize: 1,
-                            steps : 1,
-                            max:10,
-                            stepValue:1
+                            stepSize: 2,
+                            steps : 2,
+                            max:30,
+                            stepValue:2
 						}
 					}]
 				}
