@@ -106,6 +106,16 @@
           </ul>
         </li>
         @endif
+        @if (session('role') == 'Admin')
+        <li class="nav-item">
+          <a href="{{route('history')}}" class="nav-link @yield('history-active')">
+            <i class="nav-icon fas fa-history"></i>
+            <p>
+              History
+            </p>
+          </a>
+        </li>            
+        @endif
         @if (session('role') == 'Pembimbing' || session('role') == 'Admin')
         <li class="nav-item">
           <a href="{{ route('monitoring')}}" class="nav-link @yield('monitoring-active')">

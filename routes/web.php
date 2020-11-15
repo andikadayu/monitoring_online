@@ -47,7 +47,7 @@ Route::group(['middleware' => ['CekLogin']], function () {
     Route::post('add-tempat', 'TempatPrakerinController@add_tempat')->name('add_tempat');
     Route::get('get-tempat', 'TempatPrakerinController@get_tempat')->name('get_tempat');
     Route::post('update-tempat', 'TempatPrakerinController@update_tempat')->name('update_tempat');
-    Route::get('delete-tempat', 'TempatPrakerinCOntroller@delete_tempat')->name('delete_tempat');
+    Route::get('delete-tempat', 'TempatPrakerinController@delete_tempat')->name('delete_tempat');
 
     // Master Guru
     Route::get('guru', 'MasterGuruController@index')->name('guru');
@@ -90,6 +90,10 @@ Route::group(['middleware' => ['CekLogin']], function () {
     Route::post('add-laporan', 'LaporanPrakerinController@add_laporan')->name('add_laporan');
     Route::get('get-laporan', 'LaporanPrakerinController@get_laporan')->name('get_laporan');
     Route::get('accept-laporan', 'LaporanPrakerinController@accept_laporan')->name('accept_laporan');
+    Route::get('reject-laporan', 'LaporanPrakerinController@reject_laporan')->name('reject_laporan');
+    Route::get('reset-laporan', 'LaporanPrakerinController@reset_laporan')->name('reset_laporan');
+    Route::get('getting-laporan', 'LaporanPrakerinController@getting_laporan')->name('getting_laporan');
+    Route::post('update-laporan', 'LaporanPrakerinController@update_laporan')->name('update_laporan');
 
     // Jurnal Harian 
     Route::get('jurnal', 'JurnalController@index')->name('jurnal');
@@ -107,4 +111,8 @@ Route::group(['middleware' => ['CekLogin']], function () {
     Route::post('monitoring/adding-monitoring', 'MonitoringController@add_monitoring')->name('add_monitoring');
     Route::get('cetak-pdf', 'MonitoringController@cetak_pdf')->name('cetak_pdf');
     Route::get('monitoring-excel', 'MonitoringController@cetak_excel')->name('monitoring_excel');
+
+    // History
+    Route::get('history', 'HistoryController@index')->name('history');
+    Route::get('cetak-history', 'HistoryController@cetak_history')->name('cetak_history');
 });

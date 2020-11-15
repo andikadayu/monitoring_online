@@ -8,14 +8,16 @@ use DB;
 class LaporanPrakerin extends Model
 {
     protected $table = 'tb_laporan_prakerin';
+    protected $primaryKey = 'id_laporan';
+    public $timestamps = null;
 
     public function UploadLaporan($data = array())
     {
         return DB::table('tb_laporan_prakerin')->insert($data);
     }
 
-    public function acceptLaporan($id,$data = array())
+    public function acceptLaporan($id, $data = array())
     {
-        return DB::table('tb_laporan_prakerin')->where('id_laporan',$id)->update($data);
+        return DB::table('tb_laporan_prakerin')->where('id_laporan', $id)->update($data);
     }
 }

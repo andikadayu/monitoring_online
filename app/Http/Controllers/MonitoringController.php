@@ -13,6 +13,7 @@ use PDF;
 use Crypt;
 use Excel;
 use App\Exports\MonitoringExport;
+use App\History;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\MonitoringEmail;
 
@@ -89,7 +90,8 @@ class MonitoringController extends Controller
                 ->send(new MonitoringEmail());
         }
 
-
+        $h = new History();
+        $h->addHistory(Session::get('id_user'), "Menambah Data Monitoring");
 
         if ($FirstInsert) {
             return 'success';

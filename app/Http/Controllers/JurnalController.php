@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\History;
 use Illuminate\Http\Request;
 use App\JurnalHarian;
 use Session;
@@ -28,9 +29,12 @@ class JurnalController extends Controller
         $jurnal->prosedur_kerja = $request->input('prosedur_kerja');
         $jurnal->kegiatan_kerja = $request->input('kegiatan_kerja');
         $jurnal->spesifikasi_bahan = $request->input('spesifikasi_bahan');
-        $jurnal->tgl_jurnal = $request->input('tgl_jurnal');
+        $jurnal->tgl_jurnal = date('Y-m-d');
 
         $insert = $jurnal->save();
+
+        $h = new History();
+        $h->addHistory(Session::get('id_user'), "Menambah Jurnal Harian");
         if ($insert) {
             return 'success';
         } else {
@@ -51,10 +55,12 @@ class JurnalController extends Controller
         $check->prosedur_kerja = $request->input('prosedur_kerja');
         $check->kegiatan_kerja = $request->input('kegiatan_kerja');
         $check->spesifikasi_bahan = $request->input('spesifikasi_bahan');
-        $check->tgl_jurnal = $request->input('tgl_jurnal');
         $check->is_valid = 0;
 
         $update = $check->save();
+
+        $h = new History();
+        $h->addHistory(Session::get('id_user'), "Mengubah Jurnal Harian");
         if ($update) {
             return 'success';
         } else {
@@ -69,6 +75,9 @@ class JurnalController extends Controller
         $acc->id_pembimbing = Session::get('id_user');
         $acc->catatan = null;
         $cca = $acc->save();
+
+        $h = new History();
+        $h->addHistory(Session::get('id_user'), "Menyetujui Jurnal Harian");
 
         if ($cca) {
             return 'success';
@@ -91,6 +100,10 @@ class JurnalController extends Controller
         $rcc->id_pembimbing = Session::get('id_user');
         $rcc->catatan = $catatan;
         $ccr = $rcc->save();
+
+        $h = new History();
+        $h->addHistory(Session::get('id_user'), "Menolak Jurnal Harian");
+
         if ($ccr) {
             return 'success';
         } else {

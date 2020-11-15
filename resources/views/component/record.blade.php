@@ -214,7 +214,7 @@
     <p style="font-size: 12px;">Notifikasi Perijinan:(SMS: {{$mnt->telp_kantor}}), (EMAIL:
         {{$mnt->email_kantor}})</p>
     <br>
-    <table class="tables" border="000">
+    <table class="tables" border="0">
         <tr>
             <td width="50%">Diketahui Oleh</td>
             <td width="50%">

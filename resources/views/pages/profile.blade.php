@@ -53,7 +53,7 @@
                         alt="User Image" style="height: 128px;width: 128px;">
                     @endif
                     @else
-                    <img src="{{asset('public/assets/img/user2-160x160.jpg')}}" class="img-circle elevation-2"
+                    <img src="{{asset('assets/img/user2-160x160.jpg')}}" class="img-circle elevation-2"
                         alt="User Image" style="height: 128px;width: 128px;">
                     @endif
                     <h5>

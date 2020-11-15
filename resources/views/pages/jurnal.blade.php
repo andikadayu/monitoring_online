@@ -16,9 +16,8 @@
                     <input type="hidden" name="nis_siswa" id="nis_siswa" value="{{session('nis')}}" required>
                     <div class="row">
                         <div class="col-4">
-                            <label for="">Tanggal</label>
-                            <input type="date" class="form-control" id="tgl_jurnal" name="tgl_jurnal"
-                                value="<?php echo date('Y-m-d');?>" readonly required>
+                            <label for="">Tanggal</label><br>
+                            <label for=""><?php echo date('Y-m-d')?></label>
                         </div>
                         <div class="col-4">
                             <label for="">Jam Masuk</label>
@@ -68,8 +67,8 @@
                     <div class="row">
                         <div class="col-4">
                             <label for="">Tanggal</label>
-                            <input type="date" class="form-control" id="edit_tgl_jurnal" name="tgl_jurnal" readonly
-                                required>
+                            <p id="edit_tgl_jurnal"></p>
+                            
                         </div>
                         <div class="col-4">
                             <label for="">Jam Masuk</label>
@@ -262,7 +261,10 @@
                     <input type="checkbox" name="catatan[]" id="catatan1" class="custom-checkbox" value="Bahasa Tidak Sesuai EYD" multiple>
                     <label for="catatan1">Bahasa Tidak Sesuai EYD</label><br>
                     <input type="checkbox" name="catatan[]" id="catatan2" class="custom-checkbox" value="Penulisan Jurnal Tidak Sesuai Format" multiple>
-                    <label for="catatan2">Penulisan Jurnal Tidak Sesuai Format</label>
+                    <label for="catatan2">Penulisan Jurnal Tidak Sesuai Format</label><br>
+                    <input type="checkbox" id="catatanlain" class="custom-checkbox" onclick="click_lainnya();">
+                    <label for="catatanlain" onclick="click_lainnya();">lainnya</label>
+                    <input type="text" class="form-control" name="catatan[]" id="catatan3" readonly>
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="submit" class="btn btn-primary">Submit</button>
@@ -409,7 +411,7 @@
             $('#error_log').show();
             Swal.close();
             $('#id_jurnal').val(data[0].id_jurnal),
-                $('#edit_tgl_jurnal').val(data[0].tgl_jurnal),
+                $('#edit_tgl_jurnal').text(data[0].tgl_jurnal),
                 $('#edit_jam_masuk').val(data[0].jam_masuk),
                 $('#edit_jam_keluar').val(data[0].jam_keluar),
                 $('#summernoteUpdate').summernote('code', data[0].kegiatan_kerja),
@@ -526,6 +528,18 @@
             location.reload();
         })
 
+    }
+
+
+
+    function click_lainnya() {
+        if ($('#catatanlain').is(':checked')) {
+            $('#catatan3').removeAttr('readonly');
+            $('#catatan3').val('');
+        } else {
+            $('#catatan3').attr('readonly',true);
+            $('#catatan3').val('');
+        }
     }
 </script>
 @endsection

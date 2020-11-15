@@ -115,6 +115,8 @@
                             Selesai
                         @elseif($lp->lp_valid == 0)
                             Belum
+                        @else
+                            Ditolak
                         @endif
                     @endforeach
                 </h3>

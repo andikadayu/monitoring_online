@@ -4,7 +4,7 @@
 @section('header','Laporan')
 @section('content')
 {{-- Tambah Data  --}}
-@if (session('role') == 'Siswa' && $laporan == null)
+@if (session('role') == 'Siswa' && $laporan ==  "[]")
 <div class="row" id="AddLaporan">
     <div class="col-12">
         <div class="card">
@@ -22,8 +22,7 @@
                         </div>
                         <div class="col-6">
                             <label for="">Tanggal</label>
-                            <input type="date" class="form-control" id="tgl_laporan" name="tgl_laporan"
-                                value="<?php echo date('Y-m-d');?>" readonly required>
+                            <p><?php echo date('Y-m-d'); ?></p>
                         </div>
                     </div>
                     <div class="row">
@@ -48,6 +47,47 @@
 </div>
 @endif
 
+{{-- Edit Upload Laporan --}}
+<div class="row" id="UpdateLaporan">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Upload Laporan</h3>
+            </div>
+            <div class="card-body">
+                <form id="update_laporan" onsubmit="update_laporan();return false;">
+                    {{ csrf_field() }}
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="">Judul Project</label>
+                            <input type="text" class="form-control" id="edit_judul_laporan" name="judul_laporan" required>
+                        </div>
+                        <div class="col-6">
+                            <label for="">Tanggal</label>
+                            <p><?php echo date('Y-m-d'); ?></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label for="">File</label>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="edit_file_laporan" name="file_laporan"
+                                    accept="application/pdf" required>
+                                <label class="custom-file-label" for="edit_file_laporan">Choose File (PDF)</label>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer">
+                <input type="submit" value="Submit" class="btn btn-primary">
+                <button type="reset" class="btn btn-secondary" onclick="
+                $('#UpdateLaporan').hide();">Close</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 <div class="row">
     <div class="col-12">
@@ -79,19 +119,42 @@
                                 <td>{{$lp->nis_siswa}}</td>
                                 <td>{{$lp->judul_laporan}}</td>
                                 <td>
-                                    @if ($lp->lp_valid == '0')
-                                    <span class="badge bg-warning">Pending</span></td>
+                                @if ($lp->lp_valid == '0')
+                                <span class="badge bg-warning">Pending</span>
+                                @elseif($lp->lp_valid == '1')
+                                <span class="badge bg-success">Done</span>
                                 @else
-                                <span class="badge bg-success">Done</span></td>
+                                <span class="badge bg-danger">Rejected</span>
                                 @endif
                                 </td>
                                 <td>{{$lp->tgl_laporan}}</td>
                                 <td>
-                                    @if (session('role')=='Pembimbing' && $lp->lp_valid == '0')
+                                    @if (session('role')=='Pembimbing')
+                                    @if ($lp->lp_valid == '0')
                                     <button class="btn btn-success btn-sm" onclick="accept_data({{$lp->id_laporan}});">
-                                        <i class="fas fa-check">
+                                        <i class="fas fa-thumbs-up">
                                         </i>
                                         Accept
+                                    </button>
+                                    <button class="btn btn-danger btn-sm" onclick="reject_data({{$lp->id_laporan}});">
+                                        <i class="fas fa-thumbs-down">
+                                        </i>
+                                        Reject
+                                    </button>
+                                    @endif
+                                    @if ($lp->lp_valid == '1')
+                                    <button class="btn btn-warning btn-sm" onclick="reset_data({{$lp->id_laporan}});">
+                                        <i class="fas fa-redo-alt">
+                                        </i>
+                                        Reset
+                                    </button>
+                                    @endif
+                                    @endif
+                                    @if (session('role')=='Siswa' && $lp->lp_valid == '2')
+                                    <button class="btn btn-warning btn-sm" onclick="get_data({{$lp->id_laporan}});">
+                                        <i class="fas fa-edit">
+                                        </i>
+                                        Edit
                                     </button>
                                     @endif
                                     <button class="btn btn-info btn-sm" id="viewData" lang="{{url('/').'/'}}"
@@ -115,6 +178,10 @@
 @endsection
 @section('js')
 <script>
+    $(function () {
+        $('#UpdateLaporan').hide();
+    })
+
     function show_loading() {
     Swal.fire({
         html: 'Loading . . .',
@@ -189,6 +256,96 @@
                 icon: 'error',
                 title: 'Error Accept Data'
                 });
+            }
+        })
+    }
+
+    function reject_data(id) {
+        show_loading();
+        $.ajax({
+            url:'reject-laporan',
+            method:'GET',
+            data:{id:id},
+        }).done(function (data) {
+            Swal.close();
+            if (data == 'success') {
+                Toast.fire({
+                    icon:'success',
+                    title:'Success Reject Data'
+                })
+                $('#datatables').load('laporan #datatables');
+            } else {
+                Toast.fire({
+                    icon:'error',
+                    title:'Error Reject Data'
+                })
+            }
+        })
+    }
+
+    function reset_data(id) {
+        show_loading();
+        $.ajax({
+            url:'reset-laporan',
+            method:'GET',
+            data:{id:id},
+        }).done(function (data) {
+            Swal.close();
+            if (data == 'success') {
+                Toast.fire({
+                    icon:'success',
+                    title:'Success Reset Data'
+                })
+                $('#datatables').load('laporan #datatables');
+            } else {
+                Toast.fire({
+                    icon:'error',
+                    title:'Error Reset Data'
+                })
+            }
+        })
+    }
+
+    function get_data(id) {
+        $('#UpdateLaporan').show();
+        show_loading();
+        $.ajax({
+            url:'getting-laporan',
+            method:'GET',
+            data:{id:id}
+        }).done(function (data) {
+            Swal.close();
+            $('#edit_judul_laporan').val(data[0].judul_laporan);
+        })
+    }
+
+    function update_laporan() {
+        show_loading();
+        $.ajax({
+            headers:{
+            'x-csrf-token': $('meta[name="csrf-token"]').attr('content')
+            },
+            url:"update-laporan",
+            processData:false,
+            contentType:false,
+            data:new FormData($('#update_laporan')[0]),
+            type:'post',
+            method:'post'
+        }).done(function (data) {
+            Swal.close();
+            if (data == 'success') {
+                Swal.fire(
+                'success',
+                'update laporan',
+                'success'
+                );
+                location.reload();
+            }else{
+                Swal.fire(
+                'error',
+                'invalid form',
+                'error'
+                );
             }
         })
     }
