@@ -15,7 +15,7 @@
                     <div class="row">
                         <div class="col-5">
                             <label>Nama Tempat</label><br>
-                            <select id="s_tempat_prakerin" name="tempat_prakerin" class="form-control">
+                            <select id="s_tempat_prakerin" name="tempat_prakerin" class="form-control select2">
                                 <option value="">All</option>
                                 @foreach ($tempat as $t)
                                 <option value="{{base64_encode(($t->id_tempat_prakerin))}}">{{$t->detail_tempat}}

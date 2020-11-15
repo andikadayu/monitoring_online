@@ -17,7 +17,7 @@ class MasterSiswaController extends Controller
 		$siswa = DB::table('ms_siswa')
 			->select('nis_siswa', 'nama_siswa', 'telp_ortu', 'detail_kelas', 'detail_tempat')
 			->join('ms_kelas', 'ms_kelas.id_kelas', '=', 'ms_siswa.id_kelas')
-			->join('ms_tempat_prakerin', 'ms_tempat_prakerin.id_tempat_prakerin', '=', 'ms_siswa.id_tempat_prakerin')
+			->leftJoin('ms_tempat_prakerin', 'ms_tempat_prakerin.id_tempat_prakerin', '=', 'ms_siswa.id_tempat_prakerin')
 			->get();
 		return view('pages.siswa', [
 			'kelas' => $kelas,

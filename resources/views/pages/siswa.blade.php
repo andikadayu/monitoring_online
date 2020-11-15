@@ -130,7 +130,7 @@
                         </div>
                         <div class="col">
                             <label for="">Tempat Prakerin</label>
-                            <select name="id_tempat_prakerin" id="id_tempat_prakerin" class="form-control">
+                            <select name="id_tempat_prakerin" id="id_tempat_prakerin" class="form-control select2">
                                 @foreach($tempat as $tpt)
                                 <option value="{{$tpt->id_tempat_prakerin}}">{{$tpt->detail_tempat}}</option>
                                 @endforeach
@@ -238,7 +238,7 @@
                         </div>
                         <div class="col">
                             <label for="">Tempat Prakerin</label>
-                            <select name="id_tempat_prakerin" id="edit_id_tempat_prakerin" class="form-control">
+                            <select name="id_tempat_prakerin" id="edit_id_tempat_prakerin" class="form-control select2">
                                 @foreach($tempat as $tpt)
                                 <option value="{{$tpt->id_tempat_prakerin}}">{{$tpt->detail_tempat}}</option>
                                 @endforeach
