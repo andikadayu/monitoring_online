@@ -26,7 +26,7 @@ class HistoryController extends Controller
         $pdf = PDF::loadview('component.history', [
             'history' => $history->getCetak($tgl_awal, $tgl_akhir),
             'first' => $tgl_awal,
-            'last' => $last
+            'last' => $tgl_akhir
         ]);
         return $pdf->stream();
     }

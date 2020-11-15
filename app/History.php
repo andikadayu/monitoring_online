@@ -15,18 +15,18 @@ class History extends Model
     public function getHistory()
     {
         return DB::table('tb_history')
-            ->join('ms_users', 'ms_users.id_user', '=', 'tb_history.id_user')
-            ->join('ms_pembimbing', 'ms_users.id_pembimbing', '=', 'ms_pembimbing.id_pembimbing')
-            ->join('ms_siswa', 'ms_users.id_siswa_detail', '=', 'ms_siswa.nis_siswa')
+            ->leftJoin('ms_users', 'ms_users.id_user', '=', 'tb_history.id_user')
+            ->leftJoin('ms_pembimbing', 'ms_users.id_pembimbing', '=', 'ms_pembimbing.id_pembimbing')
+            ->leftJoin('ms_siswa', 'ms_users.id_siswa_detail', '=', 'ms_siswa.nis_siswa')
             ->get();
     }
 
     public function getCetak($first, $last)
     {
         return DB::table('tb_history')
-            ->join('ms_users', 'ms_users.id_user', '=', 'tb_history.id_user')
-            ->join('ms_pembimbing', 'ms_users.id_pembimbing', '=', 'ms_pembimbing.id_pembimbing')
-            ->join('ms_siswa', 'ms_users.id_siswa_detail', '=', 'ms_siswa.nis_siswa')
+            ->leftJoin('ms_users', 'ms_users.id_user', '=', 'tb_history.id_user')
+            ->leftJoin('ms_pembimbing', 'ms_users.id_pembimbing', '=', 'ms_pembimbing.id_pembimbing')
+            ->leftJoin('ms_siswa', 'ms_users.id_siswa_detail', '=', 'ms_siswa.nis_siswa')
             ->whereBetween('tb_history.tanggal', [$first, $last])
             ->get();
     }

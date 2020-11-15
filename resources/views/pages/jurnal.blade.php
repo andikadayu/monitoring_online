@@ -3,7 +3,8 @@
 @section('title','Jurnal Harian')
 @section('header','Jurnal Harian')
 @section('content')
-@if (session('role') == 'Siswa' && $last->tgl_jurnal != date('Y-m-d'))
+{{-- ['tgl_jurnal'] != date('Y-m-d') --}}
+@if (session('role') == 'Siswa' && $last == "Belum")
 <div class="row" id="AddJurnal">
     <div class="col-12">
         <div class="card">
@@ -52,7 +53,6 @@
     </div>
 </div>
 @endif
-
 <div class="row" id="UpdateJurnal">
     <div class="col-12">
         <div class="card">

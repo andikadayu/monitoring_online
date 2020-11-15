@@ -43,7 +43,7 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="email" class="form-control" placeholder="Email" id="email" name="email">
+                        <input type="email" class="form-control" placeholder="Email" id="email" name="email" required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>
@@ -52,7 +52,7 @@
                     </div>
                     <div class="input-group mb-3">
                         <input type="password" class="form-control" placeholder="Password" id="password"
-                            name="password">
+                            name="password" required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
@@ -96,17 +96,6 @@
             var id_siswa_detail = $('#id_siswa_detail').val(); 
             var email = $('#email').val();
             var password = $('#password').val();
-            $.ajax({
-                url:'{{route('post_register')}}',
-                headers: {
-                    'x-csrf-token': $('meta[name="csrf-token"]').attr('content')
-                },
-                method:'POST',
-                data:{email : email,password:password,id_siswa_detail:id_siswa_detail}
-                }).done(function (data) {
-               
-            })
-
             $.ajax({
                 url:'{{route('post_register')}}',
                 headers: {

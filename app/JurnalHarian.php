@@ -31,7 +31,17 @@ class JurnalHarian extends Model
 
     public function lastJurnal()
     {
-        return DB::table('tb_jurnal')->where('nis_siswa', Session::get('nis'))->latest('tgl_jurnal')->first();
+        $cek = DB::table('tb_jurnal')
+            ->where('nis_siswa', Session::get('nis'))
+            ->latest('tgl_jurnal')
+            ->first();
+        if (!empty($cek)) {
+            if ($cek->tgl_jurnal == date('Y-m-d')) {
+                return 'Sudah';
+            }
+        } else {
+            return 'Belum';
+        }
     }
 
     public function get_siswa($id)

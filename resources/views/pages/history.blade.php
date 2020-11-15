@@ -84,6 +84,7 @@
 @endsection
 @section('js')
 <script>
+    $('#reservation').daterangepicker();
 
     function show_loading() {
     Swal.fire({
