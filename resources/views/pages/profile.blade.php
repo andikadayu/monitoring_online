@@ -14,20 +14,20 @@
             <form id="save_profile" method="POST" onsubmit="save_profile();return false;">
                 <div class="card-body">
                     {{ csrf_field() }}
-                    <input type="hidden" name="id" id="id"
-                        value="@if(session('role')=='Siswa') {{$data[0]->nis_siswa}} @elseif(session('role')=='Pembimbing') {{$data[0]->id_pembimbing}} @endif">
                     <label for="">Email</label>
                     <input type="email" name="email" id="email" value="{{$data[0]->email}}" class="form-control"
                         readonly>
                     <label for="">Password</label>
                     <input type="password" name="password" id="password" value="{{$data[0]->password}}"
                         class="form-control" required>
+                    @if(session('role') != 'Admin')
                     <label for="">Profile</label>
                     <div class="custom-file">
                         <input type="file" class="custom-file-input" id="image" name="image" accept="image/*">
-                        <label class="custom-file-label" for="img_siswa">Choose photo</label>
+                        <label class="custom-file-label" for="image">Choose photo</label>
                         <small>**Kosongi jika tidak ingin diubah</small>
                     </div>
+                    @endif
                 </div>
                 <div class="card-footer">
                     <input type="submit" value="Submit" class="btn btn-success">
@@ -57,10 +57,12 @@
                         alt="User Image" style="height: 128px;width: 128px;">
                     @endif
                     <h5>
-                        @if(session('role') == 'Siswa' || session('role')=='Pembimbing')
-                        {{$data[0]->nama}}
+                        @if(session('role') == 'Siswa')
+                        {{$data[0]->nama_siswa}}
                         @elseif(session('role')=='Admin')
                         Administrator
+                        @else 
+                        {{$data[0]->nama_pembimbing}}
                         @endif
                     </h5>
                     @if (session('role')=='Siswa')
@@ -78,12 +80,12 @@
                         <tr>
                             <td>No Telp @if(session('role')=='Siswa')Ortu @endif</td>
                             <td>:</td>
-                            <td>{{$data[0]->no}}</td>
+                            <td>@if(session('role')=='Siswa'){{$data[0]->telp_ortu}} @else {{$data[0]->no_telp_pembimbing}}@endif</td>
                         </tr>
                         <tr>
                             <td>Alamat</td>
                             <td>:</td>
-                            <td>{{$data[0]->alamat}}</td>
+                            <td>@if(session('role')=='Siswa'){{$data[0]->alamat_siswa}} @else {{$data[0]->alamat_pembimbing}}@endif</td>
                         </tr>
                         @if(session('role')=='Siswa')
                         <tr>
