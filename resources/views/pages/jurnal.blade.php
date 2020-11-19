@@ -3,7 +3,6 @@
 @section('title','Jurnal Harian')
 @section('header','Jurnal Harian')
 @section('content')
-{{-- ['tgl_jurnal'] != date('Y-m-d') --}}
 @if (session('role') == 'Siswa' && $last == "Belum")
 <div class="row" id="AddJurnal">
     <div class="col-12">

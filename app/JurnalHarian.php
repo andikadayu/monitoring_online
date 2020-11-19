@@ -31,17 +31,16 @@ class JurnalHarian extends Model
 
     public function lastJurnal()
     {
-        $cek = DB::table('tb_jurnal')
-            ->where('nis_siswa', Session::get('nis'))
-            ->latest('tgl_jurnal')
-            ->first();
-        if (!empty($cek)) {
-            if ($cek->tgl_jurnal == date('Y-m-d')) {
+        if (Session::get('role') == 'Siswa') {
+            $cek = $this->cek_last()->tgl_jurnal;
+
+            if ($cek == date('Y-m-d')) {
                 return 'Sudah';
+            } else {
+                return 'Belum';
             }
-        } else {
-            return 'Belum';
         }
+        return null;
     }
 
     public function get_siswa($id)
@@ -57,5 +56,13 @@ class JurnalHarian extends Model
     public function JurnalSiswa($nis)
     {
         return DB::table('ms_siswa')->join('ms_tempat_prakerin', 'ms_tempat_prakerin.id_tempat_prakerin', '=', 'ms_siswa.id_tempat_prakerin')->where('nis_siswa', $nis)->get();
+    }
+
+    public function cek_last()
+    {
+        return DB::table('tb_jurnal')
+            ->where('nis_siswa', Session::get('nis'))
+            ->orderBy('tgl_jurnal', 'DESC')
+            ->first();
     }
 }
