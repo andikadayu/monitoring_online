@@ -32,12 +32,16 @@ class JurnalHarian extends Model
     public function lastJurnal()
     {
         if (Session::get('role') == 'Siswa') {
-            $cek = $this->cek_last()->tgl_jurnal;
-
-            if ($cek == date('Y-m-d')) {
-                return 'Sudah';
-            } else {
+            if ($this->cek_last() == null) {
                 return 'Belum';
+            } else {
+                $cek = $this->cek_last()->tgl_jurnal;
+
+                if ($cek == date('Y-m-d')) {
+                    return 'Sudah';
+                } else {
+                    return 'Belum';
+                }
             }
         }
         return null;
