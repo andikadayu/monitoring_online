@@ -11,13 +11,15 @@ use PDF;
 
 class JurnalController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $jurnal = new JurnalHarian();
-        $jurnals = $jurnal->getData();
+        $s = $request->get('search');
+        $m = $request->get('month');
+        $jurnals = $jurnal->getData($s, $m);
         $last = $jurnal->lastJurnal();
         $tempat = TempatPrakerin::get();
-        return view('pages.jurnal', ['jurnal' => $jurnals, 'last' => $last, 'tempat' => $tempat]);
+        return view('pages.jurnal', ['jurnal' => $jurnals, 'last' => $last, 's' => $s, 'm' => $m, 'tempat' => $tempat]);
     }
 
     public function add_jurnal(Request $request)

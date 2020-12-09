@@ -97,12 +97,29 @@
             </div>
             <div class="card-body">
                 {{-- show data  --}}
+                <form action="{{url()->current()}}" method="GET">
+                    @if(session('role') != 'Siswa')
+                    <div class="row">
+                            <div class="col-md-4">
+                                <select name="search" id="search" class="form-control select2">
+                                    <option value="" selected disabled>Pilih Tempat</option>
+                                    @foreach ($tempat as $t)
+                                        <option value="{{$t->id_tempat_prakerin}}">{{$t->detail_tempat}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="submit" value="Search" class="btn btn-secondary">
+                            </div>
+                        </div>
+                        @endif
+                    </form>
                 <div class="table-responsive">
                     <table class="table table-hover table-striped" id="datatables">
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>NIS Siswa</th>
+                                <th>Nama Siswa</th>
                                 <th>Judul Laporan</th>
                                 <th>Status</th>
                                 <th>Tgl Laporan</th>
@@ -116,7 +133,7 @@
                             @foreach ($laporan as $lp)
                             <tr>
                                 <td>{{$no++}}</td>
-                                <td>{{$lp->nis_siswa}}</td>
+                                <td>{{$lp->nama_siswa}}</td>
                                 <td>{{$lp->judul_laporan}}</td>
                                 <td>
                                 @if ($lp->lp_valid == '0')

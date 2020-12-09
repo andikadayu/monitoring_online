@@ -313,7 +313,7 @@
         })
     }
 
-    function edit_guru() {
+    function edit_pembimbing() {
         show_loading();
         $.ajax({
             headers: {

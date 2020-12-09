@@ -22,15 +22,19 @@ class Monitoring extends Model
 			->get();
 	}
 
-	public function getMonitoring()
+	public function getMonitoring($m)
 	{
 		if (Session::get('role') == 'Admin') {
 			return DB::table('tb_monitoring')
 				->join('ms_tempat_prakerin', 'ms_tempat_prakerin.id_tempat_prakerin', '=', 'tb_monitoring.id_tempat_prakerin')
+				->whereMonth('tgl_monitoring', date('m', strtotime($m)))
+				->whereYear('tgl_monitoring', date('Y', strtotime($m)))
 				->get();
 		} else {
 			return DB::table('tb_monitoring')
 				->join('ms_tempat_prakerin', 'ms_tempat_prakerin.id_tempat_prakerin', '=', 'tb_monitoring.id_tempat_prakerin')
+				->whereMonth('tgl_monitoring', date('m', strtotime($m)))
+				->whereYear('tgl_monitoring', date('Y', strtotime($m)))
 				->where('id_user', Session::get('id_user'))
 				->get();
 		}

@@ -11,9 +11,26 @@
                 <h3 class="card-title">Master Siswa</h3>
             </div>
             <div class="card-body">
-                <button class="btn btn-success" data-toggle="modal" data-target="#AddSiswa">
-                    <i class="fas fa-plus"></i> Tambah Data
-                </button>
+                <div class="row">
+                    <div class="col-md-4">
+                        <form action="{{url()->current()}}" method="GET">
+                            <select name="search" id="search" class="form-control select2">
+                                <option value="" selected disabled>Pilih Tempat</option>
+                                @foreach ($tempat as $t)
+                                    <option value="{{$t->id_tempat_prakerin}}">{{$t->detail_tempat}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="submit" value="Search" class="btn btn-secondary">
+                        </div>
+                        </form>
+                        <div class="col-md-5 text-right">
+                            <button class="btn btn-success" data-toggle="modal" data-target="#AddSiswa">
+                                <i class="fas fa-plus"></i> Tambah Data
+                            </button>
+                        </div>
+                </div>
                 {{-- show data  --}}
                 <div class="table-responsive">
                     <table class="table table-hover table-striped" id="datatables">

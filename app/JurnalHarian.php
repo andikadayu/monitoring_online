@@ -12,12 +12,15 @@ class JurnalHarian extends Model
     protected $primaryKey = 'id_jurnal';
     public $timestamps = null;
 
-    public function getData()
+    public function getData($s, $m)
     {
         if (Session::get('role') == 'Pembimbing' || Session::get('role') == 'Admin') {
             $data = DB::table('tb_jurnal')
                 ->join('ms_siswa', 'tb_jurnal.nis_siswa', '=', 'ms_siswa.nis_siswa')
                 ->join('ms_tempat_prakerin', 'ms_siswa.id_tempat_prakerin', '=', 'ms_tempat_prakerin.id_tempat_prakerin')
+                ->where('ms_siswa.id_tempat_prakerin', $s)
+                ->whereMonth('tgl_jurnal', date('m', strtotime($m)))
+                ->whereYear('tgl_jurnal', date('Y', strtotime($m)))
                 ->get();
         } else {
             $data = DB::table('tb_jurnal')

@@ -118,7 +118,7 @@ class MasterPembimbingController extends Controller
         $h = new History();
         $h->addHistory(Session::get('id_user'), "Merubah Data Pembimbing");
 
-        if ($updatet) {
+        if ($update || $updatet) {
             return 'success';
         } else {
             return 'error';
@@ -138,19 +138,19 @@ class MasterPembimbingController extends Controller
         if ($imgbefore != 'default.png') {
             unlink(storage_path('app/public/pembimbing/' . $imgbefore));
         }
+        $deleted = DB::table('ms_users')
+            ->where('id_pembimbing', $request->get('id'))
+            ->delete();
 
         $delete = DB::table('ms_pembimbing')
             ->where('id_pembimbing', $request->get('id'))
             ->delete();
 
-        $deleted = DB::table('ms_users')
-            ->where('id_pembimbing', $request->get('id'))
-            ->delete();
 
         $h = new History();
         $h->addHistory(Session::get('id_user'), "Menghapus Data Pembimbing");
 
-        if ($deleted < 0) {
+        if ($deleted < 0 || $delete < 0) {
             return 'error';
         } else {
             return 'success';

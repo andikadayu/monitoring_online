@@ -19,11 +19,13 @@ use App\Mail\MonitoringEmail;
 
 class MonitoringController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $m = $request->get('month');
         $mon = new Monitoring();
-        $monitoring = $mon->getMonitoring();
-        return view('pages.monitoring', ['monitoring' => $monitoring]);
+        $monitoring = $mon->getMonitoring($m);
+        $tempat = TempatPrakerin::get();
+        return view('pages.monitoring', ['monitoring' => $monitoring, 'm' => $m, 'tempat' => $tempat]);
     }
 
     public function form_monitoring(Request $request)

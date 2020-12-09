@@ -224,11 +224,11 @@
         <tr>
             <td>
                 <br><br><br><br>
-                <hr>Perusahaan
+                <hr>{{$mnt->detail_tempat}}
             </td>
             <td>
                 <br><br><br>Staff Prakerin
-                <hr>Pembimbing Sekolah
+                <hr>{{$mnt->nama_pembimbing}}
                 <br>FR/PRAK{{$mnt->id_monitoring}},{{\Carbon\Carbon::parse($mnt->tgl_monitoring)->isoFormat('DD/MMMM/gggg')}}
             </td>
         </tr>

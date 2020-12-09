@@ -114,7 +114,29 @@
                 <h3 class="card-title">Jurnal Harian</h3>
             </div>
             <div class="card-body">
-                <button class="btn btn-success" onclick="$('#viewReport').modal('show');"><i class="fas fa-file-pdf">Cetak PDF</i></button>
+                <form action="{{url()->current()}}" method="GET">
+                    <div class="row">
+                        @if(session('role') != 'Siswa')
+                        <div class="col-md-3">
+                            <select name="search" id="search" class="form-control select2" required>
+                                <option value="" selected disabled>Pilih Tempat</option>
+                                @foreach ($tempat as $t)
+                                    <option value="{{$t->id_tempat_prakerin}}">{{$t->detail_tempat}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="month" name="month" id="month" class="form-control" placeholder="Pilih Bulan" value="{{$m}}" required>
+                        </div>
+                        <div class="col-md-2">
+                            <input type="submit" value="Search" class="btn btn-secondary">
+                        </div>
+                        @endif
+                        <div class="@if(session('role')!='Siswa') col-md-4 text-right @endif ">
+                            <button class="btn btn-success" type="button" onclick="$('#viewReport').modal('show');"><i class="fas fa-file-pdf">Cetak PDF</i></button>
+                        </div>
+                    </div>
+                    </form>
                 {{-- show data  --}}
                 <div class="table-responsive">
                     <table class="table table-hover table-striped" id="datatables">

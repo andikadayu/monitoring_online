@@ -6,18 +6,28 @@ use App\History;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\LaporanPrakerin;
+use App\TempatPrakerin;
 use Session;
 
 class LaporanPrakerinController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $s = $request->get('search');
         if (Session::get('role') == 'Siswa') {
-            $laporan = LaporanPrakerin::where('nis_siswa', Session::get('nis'))->get();
+            $tempat = [];
+            $laporan = LaporanPrakerin::leftJoin('ms_siswa', 'ms_siswa.nis_siswa', '=', 'tb_laporan_prakerin.nis_siswa')
+                ->where('tb_laporan_prakerin.nis_siswa', Session::get('nis'))->get();
         } else {
-            $laporan = LaporanPrakerin::get();
+            $tempat = TempatPrakerin::get();
+            if ($s != null) {
+                $laporan = LaporanPrakerin::leftJoin('ms_siswa', 'ms_siswa.nis_siswa', '=', 'tb_laporan_prakerin.nis_siswa')
+                    ->where('ms_siswa.id_tempat_prakerin', $s)->get();
+            } else {
+                $laporan = [];
+            }
         }
-        return view('pages.laporan', ['laporan' => $laporan]);
+        return view('pages.laporan', ['laporan' => $laporan, 'tempat' => $tempat]);
     }
 
     public function add_laporan(Request $request)

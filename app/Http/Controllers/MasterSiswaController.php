@@ -10,19 +10,26 @@ use Session;
 
 class MasterSiswaController extends Controller
 {
-	public function index()
+	public function index(Request $request)
 	{
+		$s = $request->get('search');
 		$kelas = DB::table('ms_kelas')->get();
 		$tempat = DB::table('ms_tempat_prakerin')->get();
-		$siswa = DB::table('ms_siswa')
-			->select('nis_siswa', 'nama_siswa', 'telp_ortu', 'detail_kelas', 'detail_tempat')
-			->join('ms_kelas', 'ms_kelas.id_kelas', '=', 'ms_siswa.id_kelas')
-			->leftJoin('ms_tempat_prakerin', 'ms_tempat_prakerin.id_tempat_prakerin', '=', 'ms_siswa.id_tempat_prakerin')
-			->get();
+		if ($s != null) {
+			$siswa = DB::table('ms_siswa')
+				->select('nis_siswa', 'nama_siswa', 'telp_ortu', 'detail_kelas', 'detail_tempat')
+				->join('ms_kelas', 'ms_kelas.id_kelas', '=', 'ms_siswa.id_kelas')
+				->leftJoin('ms_tempat_prakerin', 'ms_tempat_prakerin.id_tempat_prakerin', '=', 'ms_siswa.id_tempat_prakerin')
+				->where('ms_siswa.id_tempat_prakerin', $s)
+				->get();
+		} else {
+			$siswa = [];
+		}
 		return view('pages.siswa', [
 			'kelas' => $kelas,
 			'tempat' => $tempat,
-			'siswa' => $siswa
+			'siswa' => $siswa,
+			's' => $s
 		]);
 	}
 
@@ -68,8 +75,8 @@ class MasterSiswaController extends Controller
 
 	public function update_siswa(Request $request)
 	{
-		$imgbefore = $this->cek_image($request->input('id_siswa'))->img_siswa;
 		if ($request->hasFile('img_siswa')) {
+			$imgbefore = $this->cek_image($request->input('nis_siswa'))->img_siswa;
 			if ($imgbefore != 'default.png') {
 				unlink(storage_path('app/public/siswa/' . $imgbefore));
 			}

@@ -16,7 +16,7 @@
                         <div class="col-5">
                             <label>Nama Tempat</label><br>
                             <select id="s_tempat_prakerin" name="tempat_prakerin" class="form-control select2">
-                                <option value="">All</option>
+                                <option value="" selected disabled>Pilih Tempat</option>
                                 @foreach ($tempat as $t)
                                 <option value="{{base64_encode(($t->id_tempat_prakerin))}}">{{$t->detail_tempat}}
                                 </option>
@@ -26,7 +26,7 @@
                         <div class="col-6">
                             <label>Tahun Ajaran</label><br>
                             <select id="s_tahun_ajaran" name="tahun_ajaran" class="form-control">
-                                <option value="">All</option>
+                                <option value="" selected disabled>Pilih Tahun</option>
                                 @foreach ($tahun as $t)
                                 <option value="{{base64_encode(($t->id_tahun_ajaran))}}">
                                     {{$t->tahun_awal}}/{{$t->tahun_akhir}} </option>

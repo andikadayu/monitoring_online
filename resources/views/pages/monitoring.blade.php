@@ -11,10 +11,24 @@
                 <h3 class="card-title">Monitoring</h3>
             </div>
             <div class="card-body">
-                @if (session('role') == 'Pembimbing')
-                <a href="{{route('form_monitoring')}}" class="btn btn-info"><i class="fas fa-plus"> Tambah Monitoring</i></a>
-                @endif
-                <button class="btn btn-success" onclick="$('#viewReport').modal('show');"><i class="fas fa-file-excel"> Cetak Excel</i></button>
+                <form action="{{url()->current()}}" method="GET">
+                    <div class="row">
+                        @if(session('role') != 'Siswa')
+                        <div class="col-md-3">
+                            <input type="month" name="month" id="month" class="form-control" placeholder="Pilih Bulan" value="{{$m}}" required>
+                        </div>
+                        <div class="col-md-2">
+                            <input type="submit" value="Search" class="btn btn-secondary">
+                        </div>
+                        @endif
+                        <div class="@if(session('role')!='Siswa') col-md-7 text-right @endif ">
+                            @if (session('role') == 'Pembimbing')
+                            <a href="{{route('form_monitoring')}}" class="btn btn-info"><i class="fas fa-plus"> Tambah Monitoring</i></a>
+                            @endif
+                            <button class="btn btn-success" onclick="$('#viewReport').modal('show');"><i class="fas fa-file-excel"> Cetak Excel</i></button>
+                        </div>
+                    </div>
+                    </form>
                 {{-- show data  --}}
                 <div class="table-responsive">
                     <table class="table table-hover table-striped" id="datatables">
