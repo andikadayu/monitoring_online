@@ -27,7 +27,7 @@ class LaporanPrakerinController extends Controller
                 $laporan = [];
             }
         }
-        return view('pages.laporan', ['laporan' => $laporan, 'tempat' => $tempat]);
+        return view('pages.laporan', ['laporan' => $laporan, 'tempat' => $tempat, 's' => $s]);
     }
 
     public function add_laporan(Request $request)

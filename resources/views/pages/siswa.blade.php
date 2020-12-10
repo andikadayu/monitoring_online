@@ -17,7 +17,7 @@
                             <select name="search" id="search" class="form-control select2">
                                 <option value="" selected disabled>Pilih Tempat</option>
                                 @foreach ($tempat as $t)
-                                    <option value="{{$t->id_tempat_prakerin}}">{{$t->detail_tempat}}</option>
+                                    <option value="{{$t->id_tempat_prakerin}}" @if($t->id_tempat_prakerin == $s) selected @endif>{{$t->detail_tempat}}</option>
                                 @endforeach
                             </select>
                         </div>
