@@ -33,7 +33,7 @@ class MonitoringEmail extends Mailable
             ->view('component.emailku')
             ->with(
                 [
-                    'tanggal' => date('Y-m-d')
+                    'tanggal' => date('d-m-Y')
                 ]
             );
     }

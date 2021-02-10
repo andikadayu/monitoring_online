@@ -41,7 +41,7 @@
                                     </td>
                                     <td>{{$h->role}}</td>
                                     <td>{{$h->kegiatan}}</td>
-                                    <td>{{$h->tanggal}}</td>
+                                    <td>{{\Carbon\Carbon::parse($h->tanggal)->isoFormat('DD MMM gggg hh:kk:ss')}}</td>
                                 </tr>
                             @endforeach
                         </tbody>

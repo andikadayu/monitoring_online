@@ -144,7 +144,7 @@
                                 <span class="badge bg-danger">Rejected</span>
                                 @endif
                                 </td>
-                                <td>{{$lp->tgl_laporan}}</td>
+                                <td>{{\Carbon\Carbon::parse($lp->tgl_laporan)->isoFormat('DD MMM gggg')}}</td>
                                 <td>
                                     @if (session('role')=='Pembimbing')
                                     @if ($lp->lp_valid == '0')

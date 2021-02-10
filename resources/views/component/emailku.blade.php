@@ -1,1 +1,1 @@
-<H3>Anda Telah Berhasil Di Monitoring Pada {{$tanggal}}</H3>
+<H3>Anda Telah Berhasil Di Monitoring Pada {{\Carbon\Carbon::parse($tanggal)->isoFormat('DD MMMM gggg')}}</H3>

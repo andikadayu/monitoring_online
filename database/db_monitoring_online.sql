@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 15, 2020 at 02:40 PM
+-- Generation Time: Feb 10, 2021 at 02:13 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.3.23
 
@@ -90,12 +90,12 @@ CREATE TABLE `ms_pembimbing` (
 --
 
 INSERT INTO `ms_pembimbing` (`id_pembimbing`, `nama_pembimbing`, `tgl_lahir_pembimbing`, `agama_pembimbing`, `jenis_kelamin_pembimbing`, `alamat_pembimbing`, `email_pembimbing`, `no_telp_pembimbing`, `img_pembimbing`) VALUES
-(1, 'Anthoni Rahman ST', '1978-10-09', 'Islam', 'Laki-Laki', 'Jl Anusopati No. 218 RT 05/RW 07 Candirenggo Singosari Malang   ', NULL, '+6281231678058', 'default.png'),
-(2, 'Arif Isa Fakhrudi S. Pd', '1989-05-04', 'Islam', 'Laki-Laki', 'Rt.04 Rw.12 Dsn. Wonorejo Ds. Tulungrejo Kec. Bumiaji kota Batu  ', NULL, '+6281331818807', 'default.png'),
+(1, 'Anthoni Rahman ST', '1978-10-09', 'Islam', 'Laki-Laki', 'Jl Anusopati No. 218 RT 05/RW 07 Candirenggo Singosari Malang   ', 'anthoni@gmail.com', '+6281231678058', 'default.png'),
+(2, 'Arif Isa Fakhrudi S. Pd', '1989-05-04', 'Islam', 'Laki-Laki', 'Rt.04 Rw.12 Dsn. Wonorejo Ds. Tulungrejo Kec. Bumiaji kota Batu  ', 'arifisa@gmail.com', '+6281331818807', 'default.png'),
 (3, 'Ervin Kurniawan S.Kom', '1984-09-24', 'Islam', 'Laki-Laki', 'Amadanom Rt.05/Rw.04 Dampit  ', 'laporanprakerinskariga@gmail.com', '+6281944944916', 'default.png'),
-(4, 'Joko Mulyono A.Md', '1971-07-27', 'Islam', 'Laki-Laki', 'Imam Sujono 33 Rt.01/Rw.04 Bulukerto ', NULL, '+6281215805898', 'default.png'),
-(5, 'Kamsuri S. Pd', '1976-10-16', 'Islam', 'Laki-Laki', 'Sumbersari V/480 Malang ', NULL, '+6285233470102', 'default.png'),
-(6, 'Mustafa Darmanto ST', '1981-09-11', 'Islam', 'Laki-Laki', 'Perum Arjuna View Kav 27 Semanding Dau Malang   ', NULL, '+6285109680456', 'default.png');
+(4, 'Joko Mulyono A.Md', '1971-07-27', 'Islam', 'Laki-Laki', 'Imam Sujono 33 Rt.01/Rw.04 Bulukerto ', 'joko@gmail.com', '+6281215805898', 'default.png'),
+(5, 'Kamsuri S. Pd', '1976-10-16', 'Islam', 'Laki-Laki', 'Sumbersari V/480 Malang ', 'kamsuri@gmail.com', '+6285233470102', 'default.png'),
+(6, 'Mustafa Darmanto ST', '1981-09-11', 'Islam', 'Laki-Laki', 'Perum Arjuna View Kav 27 Semanding Dau Malang   ', 'mustafa@gmail.com', '+6285109680456', 'default.png');
 
 -- --------------------------------------------------------
 
@@ -630,7 +630,7 @@ INSERT INTO `ms_siswa` (`nis_siswa`, `nama_siswa`, `tgl_lahir_siswa`, `jenis_kel
 ('19795', 'Akmal', NULL, NULL, 'Islam', 'Hani Hilmi Thalib', '085102864582', 'JL SETAMAN NO 28 RT./RW. Kel.Lowokwaru Kec.Lowokwaru-Kota Malang Jawa Timur 65141', 1, NULL, 'default.png'),
 ('19796', 'Aliefian Ramadhan', NULL, NULL, 'Islam', 'Januarika Lindasanti', '083841790128', 'sarimun no.13 RT.2/RW.2Dsn.beji Kel.- Kec.--- - 65326', 1, NULL, 'default.png'),
 ('19798', 'Aqshal Rizqullah', NULL, NULL, 'Islam', 'Soeharto', '082131105585', 'Jl Arjuna Kv Baru No 16 RT.9/RW.6Dsn.sisir Kel.Sisir Kec.Batu-Kota Batu Jawa Timur 65314', 1, 216, 'default.png'),
-('19799', 'Ardhillah Habibi Alfath', NULL, NULL, 'Islam', 'Kusnul Huda', '085850283362', 'RT.21/RW.03Dsn.BAYANAN Kel.Ngantru Kec.Ngantang-Kabupaten Malang Jawa Timur', 1, 205, 'default.png'),
+('19799', 'Ardhillah Habibi Alfath', NULL, NULL, 'Islam', 'Kusnul Huda', '085850283362', 'RT.21/RW.03Dsn.BAYANAN Kel.Ngantru Kec.Ngantang-Kabupaten Malang Jawa Timur', 1, 205, '3317_161120131525.jpeg'),
 ('19800', 'Ariq Artriska', NULL, NULL, 'Islam', 'Aris Fendy Nurdianto', '081249818822', 'JL. SAWAHAN ATAS NO.47 RT.02/RW.05 Kel.Beji Kec.Junrejo-Kota Batu Jawa Timur 65326', 1, NULL, 'default.png'),
 ('19801', 'Bagas Lintang Wicaksono', NULL, NULL, 'Islam', 'Sugeng Prayetno', '085233715737', 'RT.16/RW.06Dsn.RUKEM  Kel.Bayem Kec.Kasembon-Kabupaten Malang Jawa Timur 65393', 1, 222, 'default.png'),
 ('19802', 'Bagus Kurniawan Hafizh', NULL, NULL, 'Islam', 'Imam Wahyudi', '0895396099750', 'Jl. I R Rais RT.2/RW.3 Kel.Tanjungrejo Kec.Sukun-Kota Malang Jawa Timur 65147', 1, 219, 'default.png'),
@@ -648,7 +648,7 @@ INSERT INTO `ms_siswa` (`nis_siswa`, `nama_siswa`, `tgl_lahir_siswa`, `jenis_kel
 ('19816', 'Kharisma Romadhon Eka Safitri', NULL, NULL, 'Islam', 'Supardianto', '085102462888', 'sumbersari I/5B RT.2/RW.1 Kel.Sumbersari Kec.Lowokwaru-Kota Malang Jawa Timur', 1, NULL, 'default.png'),
 ('19818', 'Mahendra Pujo Prianto', NULL, NULL, 'Kristen', 'Bambang Puji Prianto', '081331220930', 'JL. KELUD NO. 34 RT.02/RW.11Dsn.BATU Kel.Sisir Kec.Batu-Kota Batu Jawa Timur 65314', 1, NULL, 'default.png'),
 ('19819', 'Muhammad Akbar Ilhamka', NULL, NULL, 'Islam', 'Bambang Wiyanto', '082257227223', 'JL. DESA BAYEM RT.06/RW.02Dsn.GILING Kel.Bayem Kec.Kasembon-Kabupaten Malang Jawa Timur 65393', 1, 222, 'default.png'),
-('19820', 'Muhammad Andika Dayu Anglita Putra', NULL, NULL, 'Islam', 'Suwanto', '082124620190', 'MASJID RT.23/RW.6 Kel.Tegalgondo Kec.Karangploso-Kabupaten Malang Jawa Timur 65152', 1, 222, 'default.png'),
+('19820', 'Muhammad Andika Dayu Anglita Putra', '2003-07-28', 'Laki-Laki', 'Islam', 'Suwanto', '+6282124620190', 'MASJID RT.23/RW.6 Kel.Tegalgondo Kec.Karangploso-Kabupaten Malang Jawa Timur 65152', 1, 222, '3838_161120193103.jpeg'),
 ('19821', 'Novan Hadi Kurniawan', NULL, NULL, 'Islam', 'Usman Hadi', '085745136755', 'JL. PUCUNG NO.17 RT.12/RW.3Dsn.NGUJUNG Kel.Pandanrejo Kec.Bumiaji-Kota Batu Jawa Timur 65338', 1, NULL, 'default.png'),
 ('19823', 'Putra Alan Rosydi', NULL, NULL, 'Islam', 'Suparlan', '082302588339', 'Jl Bougenvil Bawah No 29 RT.1/RW.9 Kel.- Kec.--- - 65141', 1, NULL, 'default.png'),
 ('19824', 'Rachmad Nur Aditya', NULL, NULL, 'Islam', 'Moch. Sodiq', '087701407458', 'JL. ALUMUNIUM NO. 21C RT.05/RW.09 Kel.Purwantoro Kec.Blimbing-Kota Malang Jawa Timur 65122', 1, NULL, 'default.png'),
@@ -1177,7 +1177,16 @@ CREATE TABLE `ms_users` (
 
 INSERT INTO `ms_users` (`id_user`, `email`, `password`, `role`, `id_pembimbing`, `id_siswa_detail`) VALUES
 (1, 'admin@gmail.com', 'admin', 'Admin', NULL, NULL),
-(2, 'laporanprakerinskariga@gmail.com', 'smkbisa', 'Pembimbing', 3, NULL);
+(2, 'laporanprakerinskariga@gmail.com', 'smkbisa', 'Pembimbing', 3, NULL),
+(3, 'dikapolk@gmail.com', 'andika', 'Siswa', NULL, '19820'),
+(5, 'putrayogie492@gmail.com', 'yogie', 'Siswa', NULL, '19839'),
+(6, 'bagaslintangw@gmail.com', 'bagaszagab', 'Siswa', NULL, '19801'),
+(7, 'ardhillahalfath@gmail.com', 'alfath123', 'Siswa', NULL, '19799'),
+(10, 'anthoni@gmail.com', 'anthoni', 'Pembimbing', 1, NULL),
+(11, 'arifisa@gmail.com', 'arifisa', 'Pembimbing', 2, NULL),
+(12, 'joko@gmail.com', 'joko', 'Pembimbing', 4, NULL),
+(13, 'kamsuri@gmail.com', 'kamsuri', 'Pembimbnig', 5, NULL),
+(14, 'mustafa@gmail.com', 'mustafa', 'Pembimbing', 6, NULL);
 
 -- --------------------------------------------------------
 
@@ -1191,6 +1200,80 @@ CREATE TABLE `tb_history` (
   `kegiatan` text DEFAULT NULL,
   `tanggal` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tb_history`
+--
+
+INSERT INTO `tb_history` (`id_history`, `id_user`, `kegiatan`, `tanggal`) VALUES
+(1, 5, 'Menambah Jurnal Harian', '2020-11-15 21:17:52'),
+(2, 5, 'Mengunggah File Laporan Prakerin', '2020-11-15 21:23:10'),
+(3, 2, 'Menolak Jurnal Harian', '2020-11-15 21:49:30'),
+(4, 5, 'Mengubah Jurnal Harian', '2020-11-15 21:50:04'),
+(5, 2, 'Menyetujui Jurnal Harian', '2020-11-15 21:50:16'),
+(6, 7, 'Menambah Jurnal Harian', '2020-11-16 13:13:39'),
+(7, 1, 'Menambah Data Tahun Ajaran', '2020-11-16 22:30:59'),
+(8, 1, 'Merubah Data Tahun Ajaran', '2020-11-16 22:31:17'),
+(9, 1, 'Merubah Data Tahun Ajaran', '2020-11-16 22:31:27'),
+(10, 1, 'Menghapus Data Tahun Ajaran', '2020-11-16 22:31:34'),
+(11, 1, 'Menambah Data Tahun Ajaran', '2020-11-16 22:58:51'),
+(12, 1, 'Merubah Data Tahun Ajaran', '2020-11-16 22:59:10'),
+(13, 1, 'Menghapus Data Tahun Ajaran', '2020-11-16 22:59:17'),
+(14, 1, 'Menambah Data Tahun Ajaran', '2020-11-16 23:20:20'),
+(15, 1, 'Merubah Data Tahun Ajaran', '2020-11-16 23:20:31'),
+(16, 1, 'Menghapus Data Tahun Ajaran', '2020-11-16 23:20:38'),
+(17, 1, 'Menambah Data Tahun Ajaran', '2020-11-16 23:33:52'),
+(18, 1, 'Merubah Data Tahun Ajaran', '2020-11-16 23:34:03'),
+(19, 1, 'Menghapus Data Tahun Ajaran', '2020-11-16 23:34:10'),
+(20, 3, 'Menambah Jurnal Harian', '2020-11-16 23:39:47'),
+(21, 3, 'Mengunggah File Laporan Prakerin', '2020-11-16 23:41:41'),
+(22, 2, 'Menolak Laporan Prakerin Siswa', '2020-11-16 23:44:06'),
+(23, 2, 'Menyetujui Laporan Prakerin Siswa', '2020-11-16 23:44:23'),
+(24, 2, 'Mengembalikan Status Laporan Prakerin Siswa', '2020-11-16 23:44:36'),
+(25, 2, 'Menyetujui Laporan Prakerin Siswa', '2020-11-16 23:44:42'),
+(26, 2, 'Menyetujui Jurnal Harian', '2020-11-16 23:45:15'),
+(27, 2, 'Menolak Jurnal Harian', '2020-11-16 23:45:52'),
+(28, 3, 'Mengubah Jurnal Harian', '2020-11-16 23:47:24'),
+(29, 2, 'Menyetujui Jurnal Harian', '2020-11-16 23:48:10'),
+(30, 2, 'Menambah Data Monitoring', '2020-11-16 23:52:06'),
+(31, 1, 'Menambah Data Tahun Ajaran', '2020-11-17 19:23:14'),
+(32, 1, 'Merubah Data Tahun Ajaran', '2020-11-17 19:23:26'),
+(33, 1, 'Menghapus Data Tahun Ajaran', '2020-11-17 19:23:34'),
+(34, 3, 'Menambah Jurnal Harian', '2020-11-19 12:47:17'),
+(35, 3, 'Menambah Jurnal Harian', '2020-11-19 13:00:37'),
+(36, 2, 'Menolak Jurnal Harian', '2020-11-19 13:14:35'),
+(37, 2, 'Mengembalikan Status Laporan Prakerin Siswa', '2020-11-19 13:15:15'),
+(38, 2, 'Menyetujui Laporan Prakerin Siswa', '2020-11-19 13:16:11'),
+(39, 2, 'Menambah Data Monitoring', '2020-11-19 13:19:23'),
+(40, 3, 'Menambah Jurnal Harian', '2020-11-19 13:30:39'),
+(41, 2, 'Menolak Jurnal Harian', '2020-11-19 13:34:10'),
+(42, 2, 'Mengembalikan Status Laporan Prakerin Siswa', '2020-11-19 13:37:01'),
+(43, 2, 'Menyetujui Laporan Prakerin Siswa', '2020-11-19 13:37:14'),
+(44, 3, 'Menambah Jurnal Harian', '2020-11-19 13:54:24'),
+(45, 2, 'Menyetujui Jurnal Harian', '2020-11-19 22:43:23'),
+(46, 2, 'Mengembalikan Status Laporan Prakerin Siswa', '2020-11-19 22:44:37'),
+(47, 2, 'Menyetujui Laporan Prakerin Siswa', '2020-11-19 22:44:44'),
+(48, 2, 'Mengembalikan Status Laporan Prakerin Siswa', '2020-11-27 10:58:19'),
+(49, 2, 'Menyetujui Laporan Prakerin Siswa', '2020-11-27 10:59:52'),
+(50, 2, 'Menambah Data Monitoring', '2020-12-08 10:51:49'),
+(51, 1, 'Menambah Data Siswa', '2020-12-08 10:59:08'),
+(52, 1, 'Merubah Data Siswa', '2020-12-08 11:03:29'),
+(53, 1, 'Merubah Data Siswa', '2020-12-08 11:06:02'),
+(54, 1, 'Menghapus Data Siswa', '2020-12-08 11:06:55'),
+(55, 1, 'Menambah Data Pembimbing', '2020-12-08 11:09:07'),
+(56, 1, 'Merubah Data Pembimbing', '2020-12-08 11:10:34'),
+(57, 1, 'Merubah Data Pembimbing', '2020-12-08 11:11:46'),
+(58, 1, 'Menghapus Data Pembimbing', '2020-12-08 11:14:34'),
+(59, 2, 'Mengembalikan Status Laporan Prakerin Siswa', '2020-12-09 16:32:55'),
+(60, 2, 'Menyetujui Laporan Prakerin Siswa', '2020-12-09 16:33:55'),
+(61, 2, 'Menyetujui Jurnal Harian', '2020-12-10 10:25:03'),
+(62, 1, 'Menambah Data Siswa', '2020-12-10 19:49:44'),
+(63, 1, 'Merubah Data Siswa', '2020-12-10 19:50:04'),
+(64, 1, 'Menghapus Data Siswa', '2020-12-10 19:50:21'),
+(65, 1, 'Menambah Data Pembimbing', '2020-12-10 19:51:08'),
+(66, 1, 'Merubah Data Pembimbing', '2020-12-10 19:51:22'),
+(67, 1, 'Menghapus Data Pembimbing', '2020-12-10 19:51:32'),
+(68, 1, 'Merubah Data Siswa', '2021-02-10 18:58:13');
 
 -- --------------------------------------------------------
 
@@ -1212,6 +1295,16 @@ CREATE TABLE `tb_jurnal` (
   `id_pembimbing` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `tb_jurnal`
+--
+
+INSERT INTO `tb_jurnal` (`id_jurnal`, `nis_siswa`, `jam_masuk`, `jam_keluar`, `prosedur_kerja`, `kegiatan_kerja`, `spesifikasi_bahan`, `tgl_jurnal`, `is_valid`, `catatan`, `id_pembimbing`) VALUES
+(1, '19839', '22:18:00', '01:20:00', '<p>tes</p>', '<p>coba</p>', '<p>1</p>', '2020-11-15', 1, NULL, 2),
+(2, '19799', '08:00:00', '17:00:00', '<p>Download Codeigniter<br>Buka Tutorial<br>Lakukan</p>', '<p>Belajar CRUD menggunakan Codeigniter 3 dan Ajax</p>', '<p>Laptop<br>Internet<br>Codeigniter 3</p>', '2020-11-16', 1, NULL, 2),
+(3, '19820', '08:00:00', '17:00:00', '<ol><li>Hidupkan Laptop</li><li>Buka Sublime</li><li>Copy Code pada w3school saat tutorial</li></ol>', '<ol><li>Membuat Tabel</li></ol>', '<ol><li>Laptop</li><li>Browser</li></ol>', '2020-11-16', 1, NULL, 2),
+(7, '19820', '08:00:00', '17:00:00', '<ol><li>Tes</li></ol>', '<ol><li>Membuat Tabel</li></ol>', '<ol><li>Tes</li></ol>', '2020-11-19', 1, NULL, 2);
+
 -- --------------------------------------------------------
 
 --
@@ -1228,6 +1321,14 @@ CREATE TABLE `tb_laporan_prakerin` (
   `id_pembimbing` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `tb_laporan_prakerin`
+--
+
+INSERT INTO `tb_laporan_prakerin` (`id_laporan`, `nis_siswa`, `judul_laporan`, `file_laporan`, `tgl_laporan`, `lp_valid`, `id_pembimbing`) VALUES
+(1, '19839', 'Coba coba', '19839_Laporan_151120212310.pdf', '2020-11-15', 2, 2),
+(2, '19820', 'Aplikasi Monitoring Prakerin Online', '19820_Laporan_161120234141.pdf', '2020-11-16', 1, 2);
+
 -- --------------------------------------------------------
 
 --
@@ -1243,6 +1344,15 @@ CREATE TABLE `tb_monitoring` (
   `penyelesaian` text NOT NULL,
   `id_tempat_prakerin` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_monitoring`
+--
+
+INSERT INTO `tb_monitoring` (`id_monitoring`, `id_user`, `tgl_monitoring`, `division`, `evaluasi_hasil`, `penyelesaian`, `id_tempat_prakerin`) VALUES
+(1, 2, '2020-11-16', 'TIK, ', '<ol><li>Tidak Ada</li></ol>', '<ol><li>Tidak Ada</li></ol>', 222),
+(2, 2, '2020-11-19', 'TIK, ', '<ol><li>Tidak Ada</li></ol>', '<ol><li>Tidak Ada</li></ol>', 222),
+(3, 2, '2020-12-08', 'TIK, ', '<ol><li>Tes</li></ol>', '<ol><li>Tes</li></ol>', 205);
 
 -- --------------------------------------------------------
 
@@ -1262,6 +1372,23 @@ CREATE TABLE `tb_monitoring_detail` (
   `check_penampilan` int(2) DEFAULT 0,
   `alpa_siswa` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_monitoring_detail`
+--
+
+INSERT INTO `tb_monitoring_detail` (`id_monitoring_detail`, `id_monitoring`, `nis_siswa`, `check_jurnal`, `check_apd`, `check_rambut`, `check_lksp`, `check_kinerja`, `check_penampilan`, `alpa_siswa`) VALUES
+(1, 1, '19801', 1, NULL, NULL, NULL, 1, 1, '12 April 2019'),
+(2, 1, '19819', NULL, NULL, 1, 1, 1, NULL, '16 April 2019'),
+(3, 1, '19820', 1, 1, NULL, NULL, NULL, 1, '18 Mei 2019'),
+(4, 1, '19828', 1, NULL, NULL, NULL, 1, 1, '19 Februari 2020'),
+(5, 2, '19801', 1, NULL, 1, NULL, 1, NULL, '12 April 2019'),
+(6, 2, '19819', NULL, 1, 1, 1, NULL, NULL, NULL),
+(7, 2, '19820', 1, NULL, NULL, NULL, 1, 1, NULL),
+(8, 2, '19828', 1, NULL, NULL, 1, NULL, 1, NULL),
+(9, 3, '19799', 1, NULL, NULL, NULL, 1, NULL, NULL),
+(10, 3, '19835', NULL, 1, 1, NULL, NULL, NULL, NULL),
+(11, 3, '19954', 1, NULL, NULL, 1, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -1375,13 +1502,13 @@ ALTER TABLE `ms_kelas`
 -- AUTO_INCREMENT for table `ms_pembimbing`
 --
 ALTER TABLE `ms_pembimbing`
-  MODIFY `id_pembimbing` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_pembimbing` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `ms_tahun_ajaran`
 --
 ALTER TABLE `ms_tahun_ajaran`
-  MODIFY `id_tahun_ajaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_tahun_ajaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `ms_tempat_prakerin`
@@ -1393,37 +1520,37 @@ ALTER TABLE `ms_tempat_prakerin`
 -- AUTO_INCREMENT for table `ms_users`
 --
 ALTER TABLE `ms_users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `tb_history`
 --
 ALTER TABLE `tb_history`
-  MODIFY `id_history` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_history` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT for table `tb_jurnal`
 --
 ALTER TABLE `tb_jurnal`
-  MODIFY `id_jurnal` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_jurnal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tb_laporan_prakerin`
 --
 ALTER TABLE `tb_laporan_prakerin`
-  MODIFY `id_laporan` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_laporan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tb_monitoring`
 --
 ALTER TABLE `tb_monitoring`
-  MODIFY `id_monitoring` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_monitoring` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tb_monitoring_detail`
 --
 ALTER TABLE `tb_monitoring_detail`
-  MODIFY `id_monitoring_detail` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_monitoring_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Constraints for dumped tables

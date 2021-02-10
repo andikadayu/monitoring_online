@@ -81,6 +81,8 @@
   </script>
   <!-- Bootstrap 4 -->
   <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
+
+  <script src="{{asset('assets/js/date.js')}}"></script>
   <!-- ChartJS -->
   <script src="{{asset('assets/js/Chart.min.js')}}"></script>
   <!-- Tempusdominus Bootstrap 4 -->

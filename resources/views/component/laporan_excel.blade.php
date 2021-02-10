@@ -23,7 +23,7 @@
         <td>{{$no++}}</td>
         <td>{{$dt->detail_tempat}}</td>
         <td>{{$dt->nama_pembimbing}}</td>
-        <td>{{$dt->tgl_monitoring}}</td>
+        <td>{{\Carbon\Carbon::parse($dt->tgl_monitoring)->isoFormat('DD MMM gggg')}}</td>
     </tr>
     @endforeach
 </tbody>

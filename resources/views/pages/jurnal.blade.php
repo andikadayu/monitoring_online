@@ -17,7 +17,7 @@
                     <div class="row">
                         <div class="col-4">
                             <label for="">Tanggal</label><br>
-                            <label for=""><?php echo date('Y-m-d')?></label>
+                            <label for="">{{\Carbon\Carbon::parse(date('Y-m-d'))->isoFormat('DD MMM gggg')}}</label>
                         </div>
                         <div class="col-4">
                             <label for="">Jam Masuk</label>
@@ -170,7 +170,7 @@
                                 <span class="badge bg-success">Done</span>
                                 @endif
                                 </td>
-                                <td>{{$j->tgl_jurnal}}</td>
+                                <td>{{\Carbon\Carbon::parse($j->tgl_jurnal)->isoFormat('DD MMM gggg')}}</td>
                                 <td>
                                     @if (session('role')=='Pembimbing' && $j->is_valid == '0')
                                     <button class="btn btn-success btn-sm" onclick="accept_data({{$j->id_jurnal}});">
@@ -412,8 +412,9 @@
             data: { id: id },
         }).done(function (data) {
             Swal.close();
-            $('#vNis').text(data[0].nis_siswa),
-                $('#vTanggal').text(data[0].tgl_jurnal),
+            var tgl =  new Date(data[0].tgl_jurnal);
+                $('#vNis').text(data[0].nis_siswa),
+                $('#vTanggal').text(tgl.getDate() +" "+ months[tgl.getMonth()]+" "+ tgl.getFullYear() ),
                 $('#vJMasuk').text(data[0].jam_masuk),
                 $('#vJKeluar').text(data[0].jam_keluar),
                 $('#vKegiatan').html(data[0].kegiatan_kerja),
@@ -431,8 +432,9 @@
         }).done(function (data) {
             $('#error_log').show();
             Swal.close();
+            var tgl = new Date(data[0].tgl_jurnal);
             $('#id_jurnal').val(data[0].id_jurnal),
-                $('#edit_tgl_jurnal').text(data[0].tgl_jurnal),
+                $('#edit_tgl_jurnal').text(tgl.getDate() +" "+ months[tgl.getMonth()]+" "+ tgl.getFullYear()),
                 $('#edit_jam_masuk').val(data[0].jam_masuk),
                 $('#edit_jam_keluar').val(data[0].jam_keluar),
                 $('#summernoteUpdate').summernote('code', data[0].kegiatan_kerja),

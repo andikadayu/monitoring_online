@@ -157,7 +157,7 @@
                             <td>{{$no++}}</td>
                             <td>{{$dt->detail_tempat}}</td>
                             <td>{{$dt->nama_pembimbing}}</td>
-                            <td>{{$dt->tgl_monitoring}}</td>
+                            <td>{{\Carbon\Carbon::parse($dt->tgl_monitoring)->isoFormat('DD MMM gggg')}}</td>
                             <td>
                                 <button class='btn btn-warning btn-sm rounded-circle'><i class='fas fa-print' title='Print' onclick="cetak_pdf('{{Crypt::encryptString($dt->id_monitoring)}}')"></i></button>
                             </td>

@@ -48,7 +48,7 @@
                                 <td>{{$no++}}</td>
                                 <td>{{$mon->division}}</td>
                                 <td>{{$mon->detail_tempat}}</td>
-                                <td>{{$mon->tgl_monitoring}}</td>
+                                <td>{{\Carbon\Carbon::parse($mon->tgl_monitoring)->isoFormat('DD MMM gggg')}}</td>
                                 <td>
                                     <button class="btn btn-success btn-sm"
                                         onclick="cetak_pdf('{{Crypt::encryptString($mon->id_monitoring)}}')">

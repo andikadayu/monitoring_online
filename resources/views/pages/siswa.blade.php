@@ -157,8 +157,8 @@
                     <div class="row">
                         <div class="col">
                             <label>No Telp Ortu</label>
-                            <input type="text" class="form-control" name="telp_ortu" id="telp_ortu" maxlength="13"
-                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                            <input type="text" class="form-control" name="telp_ortu" id="telp_ortu" maxlength="15"
+                                oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');"
                                 required>
                         </div>
                         <div class="col">
@@ -265,8 +265,8 @@
                     <div class="row">
                         <div class="col">
                             <label>No Telp Ortu</label>
-                            <input type="text" class="form-control" name="telp_ortu" id="edit_telp_ortu" maxlength="13"
-                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                            <input type="text" class="form-control" name="telp_ortu" id="edit_telp_ortu" maxlength="15"
+                                oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');"
                                 required>
                         </div>
                         <div class="col">
