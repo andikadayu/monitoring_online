@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\PhoneHelper;
 use App\History;
 use Illuminate\Http\Request;
 use DB;
@@ -51,7 +52,7 @@ class MasterSiswaController extends Controller
 				'jenis_kelamin_siswa' => $request->input('jenis_kelamin_siswa'),
 				'alamat_siswa' => $request->input('alamat_siswa'),
 				'nama_ortu' => $request->input('nama_ortu'),
-				'telp_ortu' => $request->input('telp_ortu'),
+				'telp_ortu' => PhoneHelper::phoneNumber($request->input('telp_ortu')),
 				'id_kelas' => $request->input('id_kelas'),
 				'id_tempat_prakerin' => $request->input('id_tempat_prakerin'),
 				'img_siswa' => $imgname
@@ -94,7 +95,7 @@ class MasterSiswaController extends Controller
 					'jenis_kelamin_siswa' => $request->input('jenis_kelamin_siswa'),
 					'alamat_siswa' => $request->input('alamat_siswa'),
 					'nama_ortu' => $request->input('nama_ortu'),
-					'telp_ortu' => $request->input('telp_ortu'),
+					'telp_ortu' => PhoneHelper::phoneNumber($request->input('telp_ortu')),
 					'id_kelas' => $request->input('id_kelas'),
 					'id_tempat_prakerin' => $request->input('id_tempat_prakerin'),
 					'img_siswa' => $imgname
@@ -109,7 +110,7 @@ class MasterSiswaController extends Controller
 					'jenis_kelamin_siswa' => $request->input('jenis_kelamin_siswa'),
 					'alamat_siswa' => $request->input('alamat_siswa'),
 					'nama_ortu' => $request->input('nama_ortu'),
-					'telp_ortu' => $request->input('telp_ortu'),
+					'telp_ortu' => PhoneHelper::phoneNumber($request->input('telp_ortu')),
 					'id_kelas' => $request->input('id_kelas'),
 					'id_tempat_prakerin' => $request->input('id_tempat_prakerin')
 				]);

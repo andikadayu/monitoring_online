@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\PhoneHelper;
 use App\History;
 use Illuminate\Http\Request;
 use DB;
@@ -34,7 +35,7 @@ class MasterPembimbingController extends Controller
                 'jenis_kelamin_pembimbing' => $request->input('jenis_kelamin_pembimbing'),
                 'alamat_pembimbing' => $request->input('alamat_pembimbing'),
                 'email_pembimbing' => $request->input('email_pembimbing'),
-                'no_telp_pembimbing' => $request->input('no_telp_pembimbing'),
+                'no_telp_pembimbing' => PhoneHelper::phoneNumber($request->input('no_telp_pembimbing')),
                 'img_pembimbing' => $imgname
             ]);
 
@@ -86,7 +87,7 @@ class MasterPembimbingController extends Controller
                     'jenis_kelamin_pembimbing' => $request->input('jenis_kelamin_pembimbing'),
                     'alamat_pembimbing' => $request->input('alamat_pembimbing'),
                     'email_pembimbing' => $request->input('email_pembimbing'),
-                    'no_telp_pembimbing' => $request->input('no_telp_pembimbing'),
+                    'no_telp_pembimbing' => PhoneHelper::phoneNumber($request->input('no_telp_pembimbing')),
                     'img_pembimbing' => $imgname
                 ]);
             $updatet = DB::table('ms_users')
@@ -105,7 +106,7 @@ class MasterPembimbingController extends Controller
                     'jenis_kelamin_pembimbing' => $request->input('jenis_kelamin_pembimbing'),
                     'alamat_pembimbing' => $request->input('alamat_pembimbing'),
                     'email_pembimbing' => $request->input('email_pembimbing'),
-                    'no_telp_pembimbing' => $request->input('no_telp_pembimbing')
+                    'no_telp_pembimbing' => PhoneHelper::phoneNumber($request->input('no_telp_pembimbing'))
                 ]);
             $updatet = DB::table('ms_users')
                 ->where('id_pembimbing', $request->input('id_pembimbing'))

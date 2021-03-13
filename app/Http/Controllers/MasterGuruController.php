@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\PhoneHelper;
 use App\History;
 use Illuminate\Http\Request;
 use DB;
@@ -34,7 +35,7 @@ class MasterGuruController extends Controller
                 'tgl_lahir_guru' => $request->input('tgl_lahir_guru'),
                 'alamat_guru' => $request->input('alamat_guru'),
                 'agama_guru' => $request->input('agama_guru'),
-                'no_telp_guru' => $request->input('no_telp_guru'),
+                'no_telp_guru' => PhoneHelper::phoneNumber($request->input('no_telp_guru')),
                 'email_guru' => $request->input('email_guru'),
                 'img_guru' => $imgname
             ]);
@@ -80,7 +81,7 @@ class MasterGuruController extends Controller
                     'tgl_lahir_guru' => $request->input('tgl_lahir_guru'),
                     'alamat_guru' => $request->input('alamat_guru'),
                     'agama_guru' => $request->input('agama_guru'),
-                    'no_telp_guru' => $request->input('no_telp_guru'),
+                    'no_telp_guru' => PhoneHelper::phoneNumber($request->input('no_telp_guru')),
                     'email_guru' => $request->input('email_guru'),
                     'img_guru' => $imgname
                 ]);
@@ -94,7 +95,7 @@ class MasterGuruController extends Controller
                     'tgl_lahir_guru' => $request->input('tgl_lahir_guru'),
                     'alamat_guru' => $request->input('alamat_guru'),
                     'agama_guru' => $request->input('agama_guru'),
-                    'no_telp_guru' => $request->input('no_telp_guru'),
+                    'no_telp_guru' => PhoneHelper::phoneNumber($request->input('no_telp_guru')),
                     'email_guru' => $request->input('email_guru')
                 ]);
         }
