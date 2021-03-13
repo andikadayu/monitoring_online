@@ -23,7 +23,7 @@ class DashboardController extends Controller
             $data['jJurnal'] = JurnalHarian::where('nis_siswa', Session::get('nis'))->count();
             $data['jAcc'] = JurnalHarian::where('nis_siswa', Session::get('nis'))->where('is_valid', 1)->count();
             $data['jBelum'] = JurnalHarian::where('nis_siswa', Session::get('nis'))->where('is_valid', '!=', 1)->count();
-            $data['sLaporan'] = LaporanPrakerin::where('nis_siswa', Session::get('nis'))->first();
+            $data['sLaporan'] = LaporanPrakerin::where('nis_siswa', Session::get('nis'))->get();
         }
         return view('pages.dashboard', $data);
     }

@@ -110,13 +110,19 @@
         <div class="small-box bg-warning">
             <div class="inner">
                 <h3 id="jUser">
-                        @if ($sLaporan['lp_valid'] == 1)
+                    @if(! $sLaporan->isEmpty())
+                        @foreach ($sLaporan as $lp)
+                        @if ($lp->lp_valid == 1)
                             Selesai
-                        @elseif($sLaporan['lp_valid'] == 0)
+                        @elseif($lp->lp_valid == 0)
                             Belum
                         @else
                             Ditolak
                         @endif
+                        @endforeach
+                    @else
+                        Belum
+                    @endif
                 </h3>
 
                 <p>Status Laporan</p>
