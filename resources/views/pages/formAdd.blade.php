@@ -35,7 +35,7 @@
                         </div>
                         <div class="col-1">
                             <label for=""></label><br>
-                            <button type="submit" class="btn btn-secondary">Search</button>
+                            <button type="submit" class="btn btn-warning">Search</button>
                         </div>
                         <br>
                     </div>

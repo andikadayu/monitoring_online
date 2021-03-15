@@ -56,7 +56,7 @@
                             <label for="">No Telp</label>
                             <input type="text" class="form-control" name="no_telp_pembimbing" id="no_telp_pembimbing"
                                 maxlength="14"
-                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                                oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');"
                                 required>
                         </div>
                     </div>
@@ -143,7 +143,7 @@
                             <label for="">No Telp</label>
                             <input type="text" class="form-control" name="no_telp_pembimbing"
                                 id="edit_no_telp_pembimbing" maxlength="14"
-                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                                oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');"
                                 required>
                         </div>
                     </div>

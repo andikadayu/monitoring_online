@@ -109,7 +109,7 @@
                                 </select>
                             </div>
                             <div class="col-md-3">
-                                <input type="submit" value="Search" class="btn btn-secondary">
+                                <input type="submit" value="Search" class="btn btn-warning">
                             </div>
                         </div>
                         @endif

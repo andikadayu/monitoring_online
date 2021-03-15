@@ -14,13 +14,11 @@ class History extends Model
 
     public function getHistory()
     {
-        $dateS = Carbon::now()->startOfMonth()->subMonth(3);
-        $dateE = Carbon::now()->startOfMonth();
         return DB::table('tb_history')
             ->leftJoin('ms_users', 'ms_users.id_user', '=', 'tb_history.id_user')
-            ->leftJoin('ms_pembimbing', 'ms_users.id_pembimbing', '=', 'ms_pembimbing.id_pembimbing')
             ->leftJoin('ms_siswa', 'ms_users.id_siswa_detail', '=', 'ms_siswa.nis_siswa')
-            ->whereBetween('tanggal', [$dateS, $dateE])
+            ->leftJoin('ms_pembimbing', 'ms_users.id_pembimbing', '=', 'ms_pembimbing.id_pembimbing')
+            ->whereBetween('tb_history.tanggal', [Carbon::now()->subMonth(3), Carbon::now()])
             ->get();
     }
 

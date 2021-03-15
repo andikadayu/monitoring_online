@@ -61,6 +61,11 @@
             <div class="card-body">
                 <form id="update_jurnal" onsubmit="edit_jurnal();return false;">
                     {{ csrf_field() }}
+                    <div class="alert alert-danger alert-dismissible" id="error_log">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h5><i class="icon fas fa-ban"></i> Alert!</h5>
+                        <h6 id="error_msg"></h6>
+                    </div>
                     <input type="hidden" name="id_jurnal" id="id_jurnal" required>
                     <input type="hidden" name="nis_siswa" id="nis_siswa" value="{{session('nis')}}" required>
                     <div class="row">
@@ -91,11 +96,6 @@
                             <label for="">Spesifikasi Bahan</label>
                             <textarea name="spesifikasi_bahan" id="summernotessUpdate" class="form-control"></textarea>
                         </div>
-                    </div>
-                    <div class="alert alert-danger alert-dismissible" id="error_log">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        <h5><i class="icon fas fa-ban"></i> Alert!</h5>
-                        <h6 id="error_msg"></h6>
                     </div>
             </div>
             <!-- /.card-body -->
@@ -129,7 +129,7 @@
                             <input type="month" name="month" id="month" class="form-control" placeholder="Pilih Bulan" value="{{$m}}" required>
                         </div>
                         <div class="col-md-2">
-                            <input type="submit" value="Search" class="btn btn-secondary">
+                            <input type="submit" value="Search" class="btn btn-warning">
                         </div>
                         @endif
                         <div class="@if(session('role')!='Siswa') col-md-4 text-right @endif ">
@@ -285,7 +285,8 @@
                     <label for="catatan2">Penulisan Jurnal Tidak Sesuai Format</label><br>
                     <input type="checkbox" id="catatanlain" class="custom-checkbox" onclick="click_lainnya();">
                     <label for="catatanlain" onclick="click_lainnya();">lainnya</label>
-                    <input type="text" class="form-control" name="catatan[]" id="catatan3" readonly>
+                    <textarea name="catatan[]" id="catatan3" rows="5" class="form-control" readonly></textarea>
+                    
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="submit" class="btn btn-primary">Submit</button>

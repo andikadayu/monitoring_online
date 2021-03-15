@@ -16,6 +16,7 @@ use App\Exports\MonitoringExport;
 use App\History;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\MonitoringEmail;
+use Exception;
 
 class MonitoringController extends Controller
 {
@@ -86,12 +87,6 @@ class MonitoringController extends Controller
             ->join('ms_users', 'ms_users.id_siswa_detail', '=', 'ms_siswa.nis_siswa')
             ->where('id_tempat_prakerin', $request->input('id_tempat_prakerin'))->get();
 
-        foreach ($em as $key => $e) {
-            Mail::to($e->email)
-                ->cc('dikahalpar@gmail.com')
-                ->send(new MonitoringEmail());
-        }
-
         $h = new History();
         $h->addHistory(Session::get('id_user'), "Menambah Data Monitoring");
 
@@ -99,6 +94,14 @@ class MonitoringController extends Controller
             return 'success';
         } else {
             return 'error';
+        }
+        try {
+            foreach ($em as $key => $e) {
+                Mail::to($e->email)
+                    ->cc('dikahalpar@gmail.com')
+                    ->send(new MonitoringEmail());
+            }
+        } catch (Exception $ex) {
         }
     }
 

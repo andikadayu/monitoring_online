@@ -192,7 +192,7 @@
         })
     }
 
-    function edit_tempat() {
+    function edit_kelas() {
         show_loading();
         $.ajax({
             headers:{

@@ -69,13 +69,14 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="save_tahun_ajaran" onsubmit="add_tahun();return false;">
+                <form id="save_tahun_ajaran" onsubmit="add_tahun();return false;" autocomplete="off">
                     {{csrf_field()}}
                     <label class="form-group">Tahun Awal</label>
                     <input type="text" class="form-control" name="tahun_awal" id="tahun_awal" maxlength="4"
-                        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required>
+                        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
+                        document.getElementById('tahun_akhir').value = parseInt(this.value)+1;" required>
                     <label class="form-group">Tahun Akhir</label>
-                    <input type="text" class="form-control" name="tahun_akhir" id="tahun_akhir" required maxlength="4"
+                    <input type="text" class="form-control" name="tahun_akhir" id="tahun_akhir" readonly maxlength="4"
                         oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required>
             </div>
             <div class="modal-footer justify-content-between">
@@ -97,15 +98,16 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="update_tahun_ajaran" onsubmit="EditTahun();return false;">
+                <form id="update_tahun_ajaran" onsubmit="EditTahun();return false;" autocomplete="off">
                     {{csrf_field()}}
                     <input type="hidden" class="form-control" name="id_tahun_ajaran" id="edit_id_tahun_ajaran" required>
                     <label class="form-group">Tahun Awal</label>
                     <input type="text" class="form-control" name="tahun_awal" id="edit_tahun_awal" required
                         maxlength="4"
-                        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+                        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
+                        document.getElementById('edit_tahun_akhir').value = parseInt(this.value)+1;">
                     <label class="form-group">Tahun Akhir</label>
-                    <input type="text" class="form-control" name="tahun_akhir" id="edit_tahun_akhir" required
+                    <input type="text" class="form-control" name="tahun_akhir" id="edit_tahun_akhir" readonly required
                         maxlength="4"
                         oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
             </div>

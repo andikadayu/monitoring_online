@@ -18,7 +18,7 @@
                             <input type="month" name="month" id="month" class="form-control" placeholder="Pilih Bulan" value="{{$m}}" required>
                         </div>
                         <div class="col-md-2">
-                            <input type="submit" value="Search" class="btn btn-secondary">
+                            <input type="submit" value="Search" class="btn btn-warning">
                         </div>
                         @endif
                         <div class="@if(session('role')!='Siswa') col-md-7 text-right @endif ">
