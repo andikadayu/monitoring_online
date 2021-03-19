@@ -64,7 +64,8 @@
                     <div class="alert alert-danger alert-dismissible" id="error_log">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h5><i class="icon fas fa-ban"></i> Alert!</h5>
-                        <h6 id="error_msg"></h6>
+                        <textarea name="" id="error_msg" style="background-color:#dc3545;border-color: #dc3545; color: white;" class="form-control" rows="5" readonly></textarea>
+                        <p id="error_msg"></p>
                     </div>
                     <input type="hidden" name="id_jurnal" id="id_jurnal" required>
                     <input type="hidden" name="nis_siswa" id="nis_siswa" value="{{session('nis')}}" required>
@@ -441,7 +442,7 @@
                 $('#summernoteUpdate').summernote('code', data[0].kegiatan_kerja),
                 $('#summernotesUpdate').summernote('code', data[0].prosedur_kerja),
                 $('#summernotessUpdate').summernote('code', data[0].spesifikasi_bahan),
-                $('#error_msg').text(data[0].catatan)
+                $('#error_msg').val(data[0].catatan)
         })
     }
 

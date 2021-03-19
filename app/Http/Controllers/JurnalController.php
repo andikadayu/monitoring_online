@@ -92,7 +92,6 @@ class JurnalController extends Controller
     {
         $rcc = JurnalHarian::find($request->input('id_jurnal'));
         $catatan = "";
-
         foreach ($request->input('catatan') as $cat) {
 
             $catatan .= $cat . ', ';
